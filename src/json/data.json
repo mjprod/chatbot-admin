@@ -1,0 +1,38 @@
+{
+  "conversations": [
+    {
+      "id": 1,
+      "title": "Delayed Order",
+      "status": "pending",
+      "user": "John Silva",
+      "messages": [
+        { "sender": "bot", "text": "Hello! How can I help you?" },
+        { "sender": "user", "text": "My order has not arrived yet." }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Payment Issue",
+      "status": "resolved",
+      "user": "Maria Oliveira",
+      "messages": [
+        { "sender": "bot", "text": "Hello! How can I help you?" },
+        { "sender": "user", "text": "My payment was not approved." },
+        { "sender": "admin", "text": "We are checking, please wait." }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Product Exchange",
+      "status": "pending",
+      "user": "Carlos Pereira",
+      "messages": [
+        {
+          "sender": "user",
+          "text": "I would like to exchange a defective product."
+        },
+        { "sender": "bot", "text": "Got it. Can you provide more details?" }
+      ]
+    }
+  ]
+}
