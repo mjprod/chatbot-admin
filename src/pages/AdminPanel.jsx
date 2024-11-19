@@ -3,10 +3,22 @@ import Sidebar from "../components/Sidebar";
 import ChatDetail from "../components/ChatDetail";
 import data from "../json/data.json"; // Import JSON
 import { Grid } from "@mui/material";
+import useWebSocket from "../hook/useWebSocket";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminPanel() {
   const [conversations, setConversations] = useState([]); // Conversations list
   const [selectedConversation, setSelectedConversation] = useState(null); // Selected conversation
+
+  const { message } = useWebSocket("wss://54.206.216.180:8081");
+
+  useEffect(() => {
+    if (message) {
+      // Show a toast notification when a new message is received
+      toast.info(`New Message Received: ${message}`);
+    }
+  }, [message]);
 
   useEffect(() => {
     // Load conversations from the JSON file
@@ -80,6 +92,7 @@ function AdminPanel() {
           />
         </div>
       </Grid>
+      <ToastContainer position="top-right" autoClose={5000} />
     </Grid>
   );
 }
