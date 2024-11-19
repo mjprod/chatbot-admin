@@ -11,7 +11,7 @@ function AdminPanel() {
   const [conversations, setConversations] = useState([]); // Conversations list
   const [selectedConversation, setSelectedConversation] = useState(null); // Selected conversation
 
-  const { message } = useWebSocket("wss://54.206.216.180:8081");
+  const { message } = useWebSocket("wss://api-staging.mjproapps.com:8081");
 
   useEffect(() => {
     if (message) {
