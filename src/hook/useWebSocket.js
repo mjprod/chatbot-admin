@@ -1,43 +1,39 @@
-const https = require("https");
-const fs = require("fs");
-const WebSocket = require("ws");
+import { useEffect, useState } from "react";
 
-// Paths to your SSL certificate and private key
-const SSL_CERT_PATH =
-  "/etc/letsencrypt/live/api-staging.mjproapps.com/fullchain.pem"; // Replace with actual path to your certificate
-const SSL_KEY_PATH =
-  "/etc/letsencrypt/live/api-staging.mjproapps.com/privkey.pem"; // Replace with actual path to your private key
+const useWebSocket = (url) => {
+  const [message, setMessage] = useState(null);
+  const [socket, setSocket] = useState(null);
 
-// Create an HTTPS server with SSL credentials
-const server = https.createServer({
-  cert: fs.readFileSync(SSL_CERT_PATH), // Load SSL certificate
-  key: fs.readFileSync(SSL_KEY_PATH), // Load private key
-});
+  useEffect(() => {
+    const ws = new WebSocket(url);
+    setSocket(ws);
 
-// Create a WebSocket server attached to the HTTPS server
-const wss = new WebSocket.Server({ server });
+    ws.onopen = () => {
+      console.log("WebSocket connected");
+    };
 
-// Handle WebSocket connections
-wss.on("connection", (socket) => {
-  console.log("New client connected");
+    ws.onmessage = (event) => {
+      setMessage(event.data); // Update with received message
+    };
 
-  // Handle messages from clients
-  socket.on("message", (message) => {
-    console.log(`Received: ${message}`);
-    // Echo the message back to the client
-    socket.send(`Server response: ${message}`);
-  });
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
 
-  // Handle client disconnection
-  socket.on("close", () => {
-    console.log("Client disconnected");
-  });
-});
+    ws.onclose = () => {
+      console.log("WebSocket disconnected");
+    };
 
-// Start the HTTPS server and WebSocket server
-const PORT = 8081; // Define the port to listen on
-server.listen(PORT, () => {
-  console.log(
-    `Secure WebSocket server running on wss://54.206.216.180:${PORT}`
-  );
-});
+    return () => ws.close(); // Cleanup on component unmount
+  }, [url]);
+
+  const sendMessage = (msg) => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(msg);
+    }
+  };
+
+  return { message, sendMessage };
+};
+
+export default useWebSocket;

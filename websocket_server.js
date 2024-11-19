@@ -1,32 +1,43 @@
+const https = require("https");
+const fs = require("fs");
 const WebSocket = require("ws");
 
-// Configure the WebSocket server to listen on all interfaces
-const server = new WebSocket.Server({ host: "0.0.0.0", port: 8081 });
+// Paths to your SSL certificate and private key
+const SSL_CERT_PATH =
+  "/etc/letsencrypt/live/api-staging.mjproapps.com/fullchain.pem"; // Replace with actual path to your certificate
+const SSL_KEY_PATH =
+  "/etc/letsencrypt/live/api-staging.mjproapps.com/privkey.pem"; // Replace with actual path to your private key
 
-const clients = []; // List of connected clients
+// Create an HTTPS server with SSL credentials
+const server = https.createServer({
+  cert: fs.readFileSync(SSL_CERT_PATH), // Load SSL certificate
+  key: fs.readFileSync(SSL_KEY_PATH), // Load private key
+});
 
-server.on("connection", (socket) => {
-  clients.push(socket); // Add the client to the list
-  console.log("Client connected!");
+// Create a WebSocket server attached to the HTTPS server
+const wss = new WebSocket.Server({ server });
 
-  // Receive messages from the client
+// Handle WebSocket connections
+wss.on("connection", (socket) => {
+  console.log("New client connected");
+
+  // Handle messages from clients
   socket.on("message", (message) => {
-    console.log(`Message received: ${message}`);
-
-    // Send the message to all other clients
-    clients.forEach((client) => {
-      if (client !== socket && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    });
+    console.log(`Received: ${message}`);
+    // Echo the message back to the client
+    socket.send(`Server response: ${message}`);
   });
 
-  // Remove the client when disconnected
+  // Handle client disconnection
   socket.on("close", () => {
     console.log("Client disconnected");
-    const index = clients.indexOf(socket);
-    if (index !== -1) clients.splice(index, 1);
   });
 });
 
-console.log("WebSocket server running at ws://54.206.216.180:8080");
+// Start the HTTPS server and WebSocket server
+const PORT = 8081; // Define the port to listen on
+server.listen(PORT, () => {
+  console.log(
+    `Secure WebSocket server running on wss://54.206.216.180:${PORT}`
+  );
+});
