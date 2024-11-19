@@ -36,6 +36,6 @@ wss.on("connection", (socket) => {
 const PORT = 8081; // Define the port to listen on
 server.listen(PORT, () => {
   console.log(
-    `Secure WebSocket server running on wss://54.206.216.180:${PORT}`
+    `Secure WebSocket server running at wss://api-staging.mjproapps.com:${PORT}`
   );
 });
