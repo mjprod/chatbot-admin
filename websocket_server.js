@@ -1,7 +1,7 @@
 const WebSocket = require("ws");
 
 // Configure the WebSocket server to listen on all interfaces
-const server = new WebSocket.Server({ host: "0.0.0.0", port: 8080 });
+const server = new WebSocket.Server({ host: "0.0.0.0", port: 8081 });
 
 const clients = []; // List of connected clients
 
