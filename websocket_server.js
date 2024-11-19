@@ -16,17 +16,21 @@ const server = https.createServer({
 const wss = new WebSocket.Server({ server });
 
 // Handle WebSocket connections
-wss.on("connection", (socket) => {
-  console.log("New client connected");
-
-  // Handle messages from clients
-  socket.on("message", (message) => {
-    console.log(`Received: ${message}`);
-
-    // Broadcast the message to all connected clients
-    wss.clients.forEach((client) => {
-      if (client !== socket && client.readyState === WebSocket.OPEN) {
-        client.send(message); // Send the message to all other clients
+  wss.on("connection", (socket) => {
+    socket.on("message", (data) => {
+      try {
+        // Parse the received JSON string
+        const message = JSON.parse(data);
+        console.log("Received message:", message);
+  
+        // Process the message or broadcast it
+        wss.clients.forEach((client) => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify({ ...message, receivedAt: new Date() }));
+          }
+        });
+      } catch (error) {
+        console.error("Failed to parse message:", error);
       }
     });
   });
