@@ -3,10 +3,8 @@ const fs = require("fs");
 const WebSocket = require("ws");
 
 // Paths to your SSL certificate and private key
-const SSL_CERT_PATH =
-  "/etc/letsencrypt/live/api-staging.mjproapps.com/fullchain.pem"; // Replace with actual path to your certificate
-const SSL_KEY_PATH =
-  "/etc/letsencrypt/live/api-staging.mjproapps.com/privkey.pem"; // Replace with actual path to your private key
+const SSL_CERT_PATH = "./certs/fullchain.pem"; // Replace with actual path to your certificate
+const SSL_KEY_PATH = "./certs/privkey.pem"; // Replace with actual path to your private key
 
 // Create an HTTPS server with SSL credentials
 const server = https.createServer({
