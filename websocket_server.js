@@ -22,8 +22,13 @@ wss.on("connection", (socket) => {
   // Handle messages from clients
   socket.on("message", (message) => {
     console.log(`Received: ${message}`);
-    // Echo the message back to the client
-    socket.send(`Server response: ${message}`);
+
+    // Broadcast the message to all connected clients
+    wss.clients.forEach((client) => {
+      if (client !== socket && client.readyState === WebSocket.OPEN) {
+        client.send(message); // Send the message to all other clients
+      }
+    });
   });
 
   // Handle client disconnection
