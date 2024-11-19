@@ -13,6 +13,7 @@ const useWebSocket = (url) => {
     };
 
     ws.onmessage = (event) => {
+      console.log("Message received:", event.data);
       setMessage(event.data); // Update with received message
     };
 
