@@ -19,46 +19,46 @@ function AdminPanel() {
       const parsedMessage = JSON.parse(message); // Parse the incoming JSON message
       const { conversationId, text, sender, user } = parsedMessage;
 
-      // Find if the conversation already exists
-      const existingConversation = conversations.find(
-        (conv) => conv.id === conversationId
-      );
-
-      if (existingConversation) {
-        // Update the existing conversation with the new message
-        const updatedConversations = conversations.map((conv) =>
-          conv.id === conversationId
-            ? {
-                ...conv,
-                messages: [...conv.messages, { sender, text }], // Add the new message
-              }
-            : conv
+      setConversations((prevConversations) => {
+        // Check if the conversation already exists
+        const existingConversation = prevConversations.find(
+          (conv) => conv.id === conversationId
         );
 
-        setConversations(updatedConversations);
-      } else {
-        // Create a new conversation if it doesn't exist
-        const newConversation = {
-          id: conversationId,
-          title: `Conversation with ${user}`,
-          status: "pending",
-          user: user,
-          messages: [{ sender, text }],
-        };
+        if (existingConversation) {
+          // Avoid adding duplicate messages
+          const lastMessage = existingConversation.messages.at(-1);
+          if (lastMessage?.text === text && lastMessage?.sender === sender) {
+            return prevConversations; // No changes if the message is already present
+          }
 
-        setConversations([...conversations, newConversation]);
-      }
+          // Add the new message to the existing conversation
+          return prevConversations.map((conv) =>
+            conv.id === conversationId
+              ? {
+                  ...conv,
+                  messages: [...conv.messages, { sender, text }],
+                }
+              : conv
+          );
+        } else {
+          // Create a new conversation if it doesn't exist
+          const newConversation = {
+            id: conversationId,
+            title: `Conversation with ${user}`,
+            status: "pending",
+            user: user,
+            messages: [{ sender, text }],
+          };
+
+          return [...prevConversations, newConversation];
+        }
+      });
 
       // Show a toast notification
       toast.info(`New Message Received from ${user}: ${text}`);
     }
-  }, [message, conversations]);
-
-  // Load initial conversations (if you want to pre-load them)
-  useEffect(() => {
-    // Replace with an API call if needed
-    setConversations([]);
-  }, []);
+  }, [message]);
 
   // Handle conversation selection
   const handleSelectConversation = (id) => {
