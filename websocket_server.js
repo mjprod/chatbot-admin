@@ -15,29 +15,48 @@ const server = https.createServer({
 // Create a WebSocket server attached to the HTTPS server
 const wss = new WebSocket.Server({ server });
 
+// Function to broadcast a message to all connected clients
+const broadcastMessage = (message, senderSocket) => {
+  wss.clients.forEach((client) => {
+    if (client !== senderSocket && client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(message)); // Broadcast the JSON message
+    }
+  });
+};
+
 // Handle WebSocket connections
-  wss.on("connection", (socket) => {
-    socket.on("message", (data) => {
-      try {
-        // Parse the received JSON string
-        const message = JSON.parse(data);
-        console.log("Received message:", message);
-  
-        // Process the message or broadcast it
-        wss.clients.forEach((client) => {
-          if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify({ ...message, receivedAt: new Date() }));
-          }
-        });
-      } catch (error) {
-        console.error("Failed to parse message:", error);
-      }
-    });
+wss.on("connection", (socket) => {
+  console.log("New client connected");
+
+  // Handle messages from clients
+  socket.on("message", (data) => {
+    try {
+      // Parse the received data as JSON
+      const message = JSON.parse(data);
+      console.log("Received:", message);
+
+      // Broadcast the message to all other clients
+      broadcastMessage(message, socket);
+    } catch (error) {
+      console.error("Failed to parse message as JSON:", error);
+
+      // Send an error response to the sender
+      socket.send(
+        JSON.stringify({
+          error: "Invalid message format. Expected JSON.",
+        })
+      );
+    }
   });
 
   // Handle client disconnection
   socket.on("close", () => {
     console.log("Client disconnected");
+  });
+
+  // Handle connection errors
+  socket.on("error", (error) => {
+    console.error("WebSocket error:", error);
   });
 });
 
