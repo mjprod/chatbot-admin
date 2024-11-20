@@ -1,31 +1,38 @@
 {
   "conversations": [
     {
-      "id": 1,
-      "title": "Delayed Order",
-      "status": "pending",
+      "id": "d600c1f3-f2e7-4fdf-b849-d34594cc26f1",
+      "title": "",
+      "status": "",
       "user": "John Silva",
+      "adminId": "admin1",
       "messages": [
         { "sender": "bot", "text": "Hello! How can I help you?" },
         { "sender": "user", "text": "My order has not arrived yet." }
       ]
     },
     {
-      "id": 2,
-      "title": "Payment Issue",
-      "status": "resolved",
+      "id": "d600c1f3-f2e7-4fdf-b849-d34594cc26f5",
+      "title": "",
+      "status": "",
       "user": "Maria Oliveira",
+      "adminId": "admin1",
       "messages": [
         { "sender": "bot", "text": "Hello! How can I help you?" },
         { "sender": "user", "text": "My payment was not approved." },
-        { "sender": "admin", "text": "We are checking, please wait." }
+        {
+          "sender": "admin",
+          "text": "We are checking, please wait.",
+          "adminId": "admin1"
+        }
       ]
     },
     {
-      "id": 3,
-      "title": "Product Exchange",
-      "status": "pending",
+      "id": "d600c1f3-f2e7-4fdf-b849-d34594cc26c5",
+      "title": "",
+      "status": "",
       "user": "Carlos Pereira",
+      "adminId": "admin1",
       "messages": [
         {
           "sender": "user",
