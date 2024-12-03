@@ -1,90 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../components/Sidebar";
 import ChatDetail from "../components/ChatDetail";
-import { Grid } from "@mui/material";
-import useWebSocket from "../hook/useWebSocket";
+import { Grid2 as Grid } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSocketContext } from "../context/SocketContext";
 
 function AdminPanel() {
-  const [conversations, setConversations] = useState([]); // Conversations list
-  const [selectedConversation, setSelectedConversation] = useState(null); // Selected conversation
+  const [selectedConversationId, setSelectedConversationId] = useState(null); // Selected conversation
+  const messagesEndRef = useRef(null);
 
   // WebSocket hook
-  const { message } = useWebSocket("wss://api-staging.mjproapps.com:8081");
+  const { conversations, setConversations } = useSocketContext();
 
-  // Process incoming WebSocket messages
-  useEffect(() => {
-    if (message) {
-      const parsedMessage = JSON.parse(message); // Parse the incoming JSON message
-      const { conversationId, text, sender, user } = parsedMessage;
-
-      setConversations((prevConversations) => {
-        // Check if the conversation already exists
-        const existingConversation = prevConversations.find(
-          (conv) => conv.id === conversationId
-        );
-
-        if (existingConversation) {
-          // Avoid adding duplicate messages
-          const lastMessage = existingConversation.messages.at(-1);
-          if (lastMessage?.text === text && lastMessage?.sender === sender) {
-            return prevConversations; // No changes if the message is already present
-          }
-
-          // Add the new message to the existing conversation
-          return prevConversations.map((conv) =>
-            conv.id === conversationId
-              ? {
-                  ...conv,
-                  messages: [...conv.messages, { sender, text }],
-                }
-              : conv
-          );
-        } else {
-          // Create a new conversation if it doesn't exist
-          const newConversation = {
-            id: conversationId,
-            title: `Conversation with ${user}`,
-            status: "pending",
-            user: user,
-            messages: [{ sender, text }],
-          };
-
-          return [...prevConversations, newConversation];
-        }
-      });
-
-      // Show a toast notification
-      toast.info(`New Message Received from ${user}: ${text}`);
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [message]);
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+    console.log(conversations);
+  }, [conversations]);
+
+  const conversation = conversations.find(
+    (conv) => conv.id === selectedConversationId
+  );
 
   // Handle conversation selection
   const handleSelectConversation = (id) => {
     const conversation = conversations.find((conv) => conv.id === id);
-    setSelectedConversation(conversation);
+    setSelectedConversationId(conversation.id);
   };
 
   // Handle sending messages
   const handleSendMessage = (message) => {
-    if (!selectedConversation) return;
+    if (!selectedConversationId) return;
 
     const updatedMessages = [
-      ...selectedConversation.messages,
+      ...conversation.messages,
       { sender: "admin", text: message },
     ];
 
     // Update locally
-    setSelectedConversation({
-      ...selectedConversation,
-      messages: updatedMessages,
-    });
+    setSelectedConversationId(
+      selectedConversationId
+      //messages: updatedMessages,
+    );
 
     // Update the conversation list
     setConversations((prev) =>
       prev.map((conv) =>
-        conv.id === selectedConversation.id
+        conv.id === selectedConversationId
           ? { ...conv, messages: updatedMessages }
           : conv
       )
@@ -107,7 +75,11 @@ function AdminPanel() {
         }}
       >
         <Sidebar
-          conversations={conversations}
+          //conversations={conversations.map((conversation) => ({
+          //...conversation,
+          //id:
+          //  conversation.id || `${conversation.title}-${conversation.status}`,
+          //}))}
           onSelectConversation={handleSelectConversation}
         />
       </Grid>
@@ -124,10 +96,11 @@ function AdminPanel() {
       >
         <div style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
           <ChatDetail
-            conversation={selectedConversation}
+            conversationId={selectedConversationId}
             onSendMessage={handleSendMessage}
           />
         </div>
+        <div ref={messagesEndRef} />
       </Grid>
       <ToastContainer position="top-right" autoClose={5000} />
     </Grid>

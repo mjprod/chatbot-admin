@@ -5,6 +5,8 @@ import Notifications from "@mui/icons-material/Notifications";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { Box, IconButton } from "@mui/material";
+import { AuthContextProvider } from "./context/AuthContext";
+import { SocketContextProvider } from "./context/SocketContext";
 
 function App() {
   const [themeMode, setThemeMode] = useState("dark"); // Tema padrão: escuro
@@ -38,7 +40,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
+      {/* <Box
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -60,8 +62,12 @@ function App() {
             <DarkModeIcon color="secondary" />
           )}
         </IconButton>
-      </Box>
-      <AdminPanel />
+      </Box>*/}
+      <AuthContextProvider>
+        <SocketContextProvider>
+          <AdminPanel />
+        </SocketContextProvider>
+      </AuthContextProvider>
     </ThemeProvider>
   );
 }

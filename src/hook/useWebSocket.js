@@ -12,11 +12,16 @@ const useWebSocket = (url) => {
       console.log("WebSocket connected");
     };
 
-    //ws.onmessage = (event) => {
-    //console.log("Message received:", event.data);
-    //setMessage(event.data); // Update with received message
-    //};
     ws.onmessage = async (event) => {
+      const jsonMessage = JSON.parse(event.data);
+
+      if ("type" in jsonMessage) {
+        if (jsonMessage.type === "status_change") {
+          console.log(jsonMessage);
+          return;
+        }
+      }
+
       if (event.data instanceof Blob) {
         const text = await event.data.text(); // Convert Blob to text
         console.log("Message received (Blob converted to text):", text);
