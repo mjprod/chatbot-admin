@@ -1,21 +1,13 @@
 import React from "react";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-  Switch,
-  Typography,
-} from "@mui/material";
 import { useSocketContext } from "../context/SocketContext";
 import { generateTimestamp } from "../utils/timestamp.js";
+import "./Sidebar.css";
 
 function Sidebar({ onSelectConversation }) {
   const { sendMessage, setConversations, conversations } = useSocketContext();
 
   const handleToggleConversation = (id) => {
     setConversations((prevConversations) => {
-      // Atualiza o status das conversas diretamente no contexto
       const updatedConversations = prevConversations.map((conv) =>
         conv.id === id
           ? {
@@ -44,47 +36,57 @@ function Sidebar({ onSelectConversation }) {
 
   return (
     <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      <Typography
-        variant="h6"
+      <div
         style={{
           padding: "16px",
           borderBottom: "1px solid #333",
+          fontSize: "18px",
+          fontWeight: "bold",
         }}
       >
         Conversations
-      </Typography>
-      <List style={{ flex: 1, overflowY: "auto" }}>
+      </div>
+      <ul style={{ flex: 1, overflowY: "auto", padding: 0, margin: 0 }}>
         {conversations.map((conversation) => (
-          <ListItem
-            button
+          <li
             key={conversation.id}
             onClick={() => onSelectConversation(conversation.id)}
             style={{
               display: "flex",
               justifyContent: "space-between",
-              backgroundColor: conversation.status === "HOLD ON" && "#594141",
+              alignItems: "center",
+              backgroundColor:
+                conversation.status === "HOLD ON" ? "#594141" : "#fff",
               border: "1px solid #ddd",
               marginBottom: "8px",
               borderRadius: "8px",
               padding: "8px",
+              cursor: "pointer",
+              listStyleType: "none",
             }}
           >
-            <ListItemText
-              primary={conversation.title}
-              secondary={conversation.status}
-            />
-
-            <Box style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div>
+              <div style={{ fontWeight: "bold" }}>{conversation.title}</div>
+              <div style={{ fontSize: "12px", color: "#666" }}>
+                {conversation.status}
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               {/* Toggle Switch */}
-              <Switch
-                edge="end"
-                checked={conversation.status === "HOLD ON"}
-                onChange={() => handleToggleConversation(conversation.id)}
-              />
-            </Box>
-          </ListItem>
+              <label
+                style={{ display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                <input
+                  type="checkbox"
+                  checked={conversation.status === "HOLD ON"}
+                  onChange={() => handleToggleConversation(conversation.id)}
+                />
+                <span>Toggle</span>
+              </label>
+            </div>
+          </li>
         ))}
-      </List>
+      </ul>
     </div>
   );
 }

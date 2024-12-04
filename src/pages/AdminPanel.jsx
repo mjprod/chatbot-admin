@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../components/Sidebar";
 import ChatDetail from "../components/ChatDetail";
-import { Grid2 as Grid } from "@mui/material";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSocketContext } from "../context/SocketContext";
 
@@ -60,50 +59,24 @@ function AdminPanel() {
   };
 
   return (
-    <Grid
-      container
-      style={{ height: "calc(100vh - 64px)", overflow: "hidden" }}
-    >
+    <div className="admin-panel">
       {/* Sidebar */}
-      <Grid
-        item
-        xs={3}
-        style={{
-          backgroundColor: "inherit",
-          borderRight: "1px solid #ddd",
-          overflowY: "auto",
-        }}
-      >
-        <Sidebar
-          //conversations={conversations.map((conversation) => ({
-          //...conversation,
-          //id:
-          //  conversation.id || `${conversation.title}-${conversation.status}`,
-          //}))}
-          onSelectConversation={handleSelectConversation}
-        />
-      </Grid>
+      <div className="sidebar">
+        <Sidebar onSelectConversation={handleSelectConversation} />
+      </div>
 
       {/* Main content */}
-      <Grid
-        item
-        xs={9}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: "inherit",
-        }}
-      >
-        <div style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
+      <div className="main-content">
+        <div className="chat-detail">
           <ChatDetail
             conversationId={selectedConversationId}
             onSendMessage={handleSendMessage}
           />
         </div>
         <div ref={messagesEndRef} />
-      </Grid>
+      </div>
       <ToastContainer position="top-right" autoClose={5000} />
-    </Grid>
+    </div>
   );
 }
 

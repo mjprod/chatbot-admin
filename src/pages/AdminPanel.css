@@ -1,0 +1,24 @@
+.admin-panel {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+.sidebar {
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  background-color: inherit;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  background-color: inherit;
+}
+
+.chat-detail {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}

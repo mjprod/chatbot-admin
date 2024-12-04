@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Typography, TextField, Button, Box } from "@mui/material";
 import { useSocketContext } from "../context/SocketContext";
 import { generateTimestamp } from "../utils/timestamp.js";
+import "./ChatDetail.css"; // Import the CSS file
 
 function ChatDetail({ conversationId, onSendMessage }) {
   const [message, setMessage] = useState("");
@@ -12,7 +12,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
 
   useEffect(() => {
     if (conversation) {
-      console.log("SEU" + conversation);
+      console.log("conversation", conversation);
     }
   }, [conversation]);
 
@@ -22,7 +22,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
         JSON.stringify({
           text: message,
           sender: "admin",
-          conversation_id: conversation.id,
+          conversationID: conversation.id,
           user: "admin",
           timestamp: generateTimestamp(),
         })
@@ -48,54 +48,42 @@ function ChatDetail({ conversationId, onSendMessage }) {
 
   if (!conversation) {
     return (
-      <Box style={{ textAlign: "center", marginTop: "50px" }}>
-        <Typography variant="h6">
-          Select a conversation to view details.
-        </Typography>
-      </Box>
+      <div className="chat-detail__empty">
+        <h6>Select a conversation to view details.</h6>
+      </div>
     );
   }
 
   return (
-    <Box style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      <Box style={{ flex: 1, overflowY: "auto", paddingBottom: "16px" }}>
+    <div className="chat-detail">
+      <div className="chat-detail__messages">
         {conversation.messages.map((msg, index) => (
-          <Box
+          <div
             key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "8px",
-              color: msg.sender === "bot" ? "#90caf9" : "#ffffff",
-            }}
+            className={`chat-detail__message ${
+              msg.sender === "bot" ? "chat-detail__message--bot" : ""
+            }`}
           >
-            <span style={{ marginRight: "8px" }}>{getIcon(msg.sender)}</span>
-            <Typography variant="body1">{msg.text}</Typography>
-          </Box>
+            <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
+            <p>{msg.text}</p>
+          </div>
         ))}
-      </Box>
+      </div>
 
       {conversation.status === "HOLD ON" && (
-        <Box style={{ borderTop: "1px solid #333", paddingTop: "16px" }}>
-          <TextField
-            fullWidth
-            multiline
+        <div className="chat-detail__input-container">
+          <textarea
+            className="chat-detail__textarea"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Write a message..."
-            variant="outlined"
           />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSend}
-            style={{ marginTop: "8px" }}
-          >
+          <button className="chat-detail__button" onClick={handleSend}>
             Send
-          </Button>
-        </Box>
+          </button>
+        </div>
       )}
-    </Box>
+    </div>
   );
 }
 
