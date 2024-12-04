@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography, TextField, Button, Box } from "@mui/material";
 import { useSocketContext } from "../context/SocketContext";
+import { generateTimestamp } from "../utils/timestamp.js";
 
 function ChatDetail({ conversationId, onSendMessage }) {
   const [message, setMessage] = useState("");
@@ -21,8 +22,9 @@ function ChatDetail({ conversationId, onSendMessage }) {
         JSON.stringify({
           text: message,
           sender: "admin",
-          conversationId: conversation.id,
+          conversation_id: conversation.id,
           user: "admin",
+          timestamp: generateTimestamp(),
         })
       );
 

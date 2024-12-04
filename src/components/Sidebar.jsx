@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useSocketContext } from "../context/SocketContext";
+import { generateTimestamp } from "../utils/timestamp.js";
 
 function Sidebar({ onSelectConversation }) {
   const { sendMessage, setConversations, conversations } = useSocketContext();
@@ -33,6 +34,7 @@ function Sidebar({ onSelectConversation }) {
           type: "status_change",
           id: updatedConversation.id,
           status: updatedConversation.status,
+          timestamp: generateTimestamp(),
         })
       );
 
