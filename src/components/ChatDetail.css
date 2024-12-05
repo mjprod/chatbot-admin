@@ -78,19 +78,20 @@
 }
 
 .chat-detail__button {
-  width: 71px;
-  height:58px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-  background: var(
-    --jokerColors-jokerGradients-jokerGradientGold02,
-    linear-gradient(345deg, #d6bc9e 3.8%, #ffeec0 50.91%, #d6bc9e 98.51%)
-  );
+  background: var(--jokerColors-jokerGradients-jokerGradientGold02, linear-gradient(345deg, #d6bc9e 3.8%, #ffeec0 50.91%, #d6bc9e 98.51%));
   color: #53493d;
   border: none;
-  
   cursor: pointer;
-  font-size: 3rem;
+  font-size: 45px;
   border: 1px solid #ffdea8;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 75px;
 }
 .button-chev {    transform: translateY(-4px) translateX(2px);
   display: block;}
