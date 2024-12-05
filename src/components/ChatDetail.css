@@ -26,7 +26,7 @@
   padding: 1rem;
   border-radius: 0.5rem;
 }
-
+.chat-detail__messages > div {margin-top: 1rem;}
 .chat-detail__message p {margin-top:0}
 
 /* Bot styles */
@@ -53,6 +53,58 @@
   font-size: 1.5rem;
 
 }
+
+/* Admin styles */
+.chat-detail__message--admin {
+  color: red;
+  display: flex;
+  align-items: flex-start;
+  background: linear-gradient(314deg,#d6bc9e 12.4%,#ffeec0 50.91%,#d6bc9e 118.01%)
+  );
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px dashed red;
+  margin-left: 1.2rem;
+ }
+
+ .chat-detail__message--admin .chat-detail__icon {
+  margin-right: 8px;
+  font-size: 2rem;
+  margin-top: -13px;
+}
+.chat-detail__message--admin p {margin-top:0}
+
+.chat-detail__icon {
+  margin-right: 8px;
+  font-size: 1.5rem;
+
+}
+
+/* User styles */
+.chat-detail__message--user {
+  align-self: flex-end;
+  background-color: #dddddd1f;
+  border: 1px solid #56544a66;
+  box-shadow: 0 2px 2px #0000004d;
+  color: #fff;
+  max-width: 80%;
+  text-align: right;
+  margin-left: auto;
+ }
+
+ .chat-detail__message--user .chat-detail__icon {
+  margin-right: 8px;
+  font-size: 2rem;
+  margin-top: -13px;
+}
+.chat-detail__message--user p {margin-top:0}
+
+.chat-detail__icon {
+  margin-right: 8px;
+  font-size: 1.5rem;
+
+}
+
 
 .chat-detail__input-container {
   border-top: 1px solid #333;

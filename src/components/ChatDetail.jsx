@@ -61,9 +61,8 @@ function ChatDetail({ conversationId, onSendMessage }) {
         {conversation.messages.map((msg, index) => (
           <div
             key={index}
-            className={`chat-detail__message ${
-              msg.sender === "bot" ? "chat-detail__message--bot" : ""
-            }`}
+            className={`chat-detail__message--${msg.sender}`}
+         
           >
             <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
             <p>{msg.text}</p>
