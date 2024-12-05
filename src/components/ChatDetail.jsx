@@ -3,6 +3,7 @@ import { useSocketContext } from "../context/SocketContext";
 import { generateTimestamp } from "../utils/timestamp.js";
 import "./ChatDetail.css"; // Import the CSS file
 
+
 function ChatDetail({ conversationId, onSendMessage }) {
   const [message, setMessage] = useState("");
 
@@ -79,7 +80,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
             placeholder="Write a message..."
           />
           <button className="chat-detail__button" onClick={handleSend}>
-            Send
+          <span className="button-chev">› </span>
           </button>
         </div>
       )}

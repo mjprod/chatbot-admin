@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   border-left: 1px solid #323232;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 1rem;
 }
 .sidebar-inner {height: 100%; display:flex; flex-direction: column;}
-.sidebar-title { padding: 16px;
+.sidebar-title { padding: 1rem;
   border-bottom: 1px solid #333;
   font-size: clamp(1.125rem, 1.0682rem + 0.2841vw, 1.25rem);
   font-weight: bold;
@@ -64,7 +64,7 @@
 }
 
 .toggle-switch input:checked + .toggle-switch::after {
-  transform: translateX(26px);
+  transform: translateX(-26px);
 }
 
 
@@ -121,4 +121,20 @@
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+
+/* media querie for mobile */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    padding: 0.2rem 1rem;
+   
+  }
+
+  .sidebar-title { padding: 0.5rem 1rem;}
+
+  .chat-detail {
+    height: 75dvh;
+    overflow-y: scroll;
+  }
 }

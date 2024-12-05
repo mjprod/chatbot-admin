@@ -60,9 +60,15 @@ function Sidebar({ onSelectConversation }) {
             onClick={() => onSelectConversation(conversation.id)}
             style={{
               backgroundColor:
-                conversation.status === "HOLD ON" ? "rgb(23 177 198 / 50%)" : "#dddddd1f",
+                conversation.status === "HOLD ON" ? "rgb(20 71 78 / 50%)" : "#dddddd1f",
               transform:
                 conversation.status === "HOLD ON" ? "scale(0.95)" : "scale(1)",
+                marginTop:
+                conversation.status === "HOLD ON" ? "1rem" : "0.5rem",
+                borderLeft:
+                conversation.status === "HOLD ON" ? "3px dashed #b7ffd2ca" : "initial",
+                paddingLeft:
+                conversation.status === "HOLD ON" ? "1.1rem" : "1rem",
             }}
           >
             <div>
@@ -77,24 +83,12 @@ function Sidebar({ onSelectConversation }) {
                   checked={conversation.status === "HOLD ON"}
                   onChange={() => handleToggleConversation(conversation.id)}
                 />
-                <span>{conversation.status === "HOLD ON" ? "Auto Pilot On" : "Auto Pilot Off"}</span>
+                <span>{conversation.status === "HOLD ON" ? "Auto Pilot | Off " : "Auto Pilot | On"}</span>
               </label>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              {/* Toggle Switch */}
-              <label
-                style={{ display: "flex", alignItems: "center", gap: "4px" }}
-              >
-                <input
-                  type="checkbox"
-                  checked={conversation.status === "HOLD ON"}
-                  onChange={() => handleToggleConversation(conversation.id)}
-                />
-                <span>Toggle</span>
-              </label>
-            </div>
+          
               <div className="sidebar-list-item-status">
-                {conversation.status}
+              {conversation.status === "HOLD ON" ? "You have taken Control" : "🤖 Ai is answering…"}
               </div>
             </div>
             

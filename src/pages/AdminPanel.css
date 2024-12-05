@@ -1,12 +1,9 @@
 .admin-panel {
   display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-rows: 1fr;
-    height: 100vh;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
+  height: 100dvh;
 }
-
-
 
 .main-content {
   display: flex;
@@ -14,5 +11,26 @@
   background-color: inherit;
 }
 
-.chat-detail { flex: 1;  overflow-y: auto;  padding: 1rem;}
-.chat-detail h6 {color:rgb(118, 118, 118); font-size: clamp(1rem, 0.9432rem + 0.2841vw, 1.125rem);}
+.chat-detail {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+.chat-detail h6 {
+  color: rgb(118, 118, 118);
+  font-size: clamp(1rem, 0.9432rem + 0.2841vw, 1.125rem);
+}
+
+/* media querie for mobile */
+@media screen and (max-width: 768px) {
+  .admin-panel {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+
+  .chat-detail {
+    max-height: 75dvh;
+    overflow-y: scroll;
+  }
+}
