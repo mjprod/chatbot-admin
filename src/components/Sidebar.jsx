@@ -31,6 +31,19 @@ function Sidebar({ onSelectConversation }) {
       );
       
 
+      sendMessage(
+        JSON.stringify({
+          text:
+            updatedConversation.status === "HOLD ON"
+              ? "AI is on by default but you are turning it off"
+              : "AI is off by default but you are turning it on",
+          sender: "admin",
+          conversationID: updatedConversation.id,
+          user: "admin",
+          timestamp: generateTimestamp(),
+        })
+      );
+
       return updatedConversations;
     });
   };
