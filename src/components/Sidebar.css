@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   border-left: 1px solid #323232;
-  overflow-y: scroll;
+
   padding: 1rem;
 }
 .sidebar-inner {height: 100%; display:flex; flex-direction: column;}
@@ -12,7 +12,7 @@
   font-size: clamp(1.125rem, 1.0682rem + 0.2841vw, 1.25rem);
   font-weight: bold;
   }
-
+.chat-card-container{flex: 1; overflow-y: auto; padding: 0.6rem; margin: 0; overflow-y: auto;}
 
 .sidebar-list {
   flex: 1;
@@ -126,15 +126,11 @@
 
 /* media querie for mobile */
 @media screen and (max-width: 768px) {
-  .sidebar {
-    padding: 0.2rem 1rem;
-   
-  }
-
+  
+.sidebar-inner{        border-bottom: 1px solid #232323;
+  box-shadow: 0 1px 0 #ffffff17;}
   .sidebar-title { padding: 0.5rem 1rem;}
+  .sidebar {overflow: unset;height: 30%; }
 
-  .chat-detail {
-    height: 75dvh;
-    overflow-y: scroll;
-  }
+
 }

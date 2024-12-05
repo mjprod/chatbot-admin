@@ -98,3 +98,10 @@
 .chat-detail__button:hover {
   background-color: #0056b3;
 }
+
+
+
+/* media querie for mobile */
+@media screen and (max-width: 768px) {
+  /* .chat-detail__messages{overflow-y: scroll;} */
+}

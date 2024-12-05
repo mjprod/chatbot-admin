@@ -53,7 +53,7 @@ function Sidebar({ onSelectConversation }) {
       <div className="sidebar-title">
         Conversations
       </div>
-      <ul style={{ flex: 1, overflowY: "auto", padding: 0, margin: 0 }}>
+      <ul className="chat-card-container">
         {conversations.map((conversation) => (
           <li className="conversation-item"
             key={conversation.id}
