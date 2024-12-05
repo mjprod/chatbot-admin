@@ -39,6 +39,7 @@ function Sidebar({ onSelectConversation }) {
           sender: "admin",
           conversationID: updatedConversation.id,
           user: "admin",
+          admin_id: "55",
           timestamp: generateTimestamp(),
         })
       );

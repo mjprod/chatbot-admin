@@ -18,18 +18,15 @@ export const SocketContextProvider = ({ children }) => {
   // Process incoming WebSocket messages
   useEffect(() => {
     if (message) {
-      const parsedMessage = JSON.parse(message); // Parse the incoming JSON message
+      const parsedMessage = JSON.parse(message);
       const { conversationId, text, sender, user } = parsedMessage;
 
       if ("type" in parsedMessage) {
         console.log(parsedMessage);
         const { id, status } = parsedMessage;
         setConversations((prevConversations) =>
-          prevConversations.map(
-            (conv) =>
-              conv.id === id
-                ? { ...conv, status } // Atualiza o status se o ID for correspondente
-                : conv // Mantém as outras conversas inalteradas
+          prevConversations.map((conv) =>
+            conv.id === id ? { ...conv, status } : conv
           )
         );
         return;
@@ -61,7 +58,7 @@ export const SocketContextProvider = ({ children }) => {
           // Create a new conversation if it doesn't exist
           const newConversation = {
             id: conversationId,
-            title: `Conversation ${user}`,
+            title: `Conversation with ${user}`,
             status: "pending",
             user: user,
             messages: [{ sender, text }],

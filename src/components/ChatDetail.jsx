@@ -22,6 +22,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
         JSON.stringify({
           text: message,
           sender: "admin",
+          admin_id: "55",
           conversationID: conversation.id,
           user: "admin",
           timestamp: generateTimestamp(),
