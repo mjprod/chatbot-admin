@@ -12,7 +12,7 @@ function Sidebar({ onSelectConversation }) {
         conv.id === id
           ? {
               ...conv,
-              status: conv.status === "Auto Pilot Off" ? "pending" : "Auto Pilot Off",
+              status: conv.status === "HOLD ON" ? "pending" : "HOLD ON",
             }
           : { ...conv, status: "pending" }
       );
@@ -60,9 +60,9 @@ function Sidebar({ onSelectConversation }) {
             onClick={() => onSelectConversation(conversation.id)}
             style={{
               backgroundColor:
-                conversation.status === "Auto Pilot Off" ? "rgb(23 177 198 / 50%)" : "#dddddd1f",
+                conversation.status === "HOLD ON" ? "rgb(23 177 198 / 50%)" : "#dddddd1f",
               transform:
-                conversation.status === "Auto Pilot Off" ? "scale(0.95)" : "scale(1)",
+                conversation.status === "HOLD ON" ? "scale(0.95)" : "scale(1)",
             }}
           >
             <div>
@@ -74,10 +74,23 @@ function Sidebar({ onSelectConversation }) {
               >
                 <input className="toggle-switch"
                   type="checkbox"
-                  checked={conversation.status === "Auto Pilot Off"}
+                  checked={conversation.status === "HOLD ON"}
                   onChange={() => handleToggleConversation(conversation.id)}
                 />
-                <span>Ai Bot Off</span>
+                <span>{conversation.status === "HOLD ON" ? "Auto Pilot On" : "Auto Pilot Off"}</span>
+              </label>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              {/* Toggle Switch */}
+              <label
+                style={{ display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                <input
+                  type="checkbox"
+                  checked={conversation.status === "HOLD ON"}
+                  onChange={() => handleToggleConversation(conversation.id)}
+                />
+                <span>Toggle</span>
               </label>
             </div>
               <div className="sidebar-list-item-status">
