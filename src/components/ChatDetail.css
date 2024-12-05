@@ -17,17 +17,41 @@
 
 .chat-detail__message {
   display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  color: #ffffff;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  background-color: #dddddd1f;
+  border: 1px solid #56544a66;
+  box-shadow: 0 2px 2px #0000004d;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
+.chat-detail__message p {margin-top:0}
+
+/* Bot styles */
 .chat-detail__message--bot {
-  color: #90caf9;
+  color: #b7ffd2ca;
+  display: flex;
+  align-items: flex-start;
+  background-color: hsla(130, 65%, 15%, 0.2);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px dashed #90f9b659;
+  margin-left: 1.2rem;
+ }
+
+ .chat-detail__message--bot .chat-detail__icon {
+  margin-right: 8px;
+  font-size: 2rem;
+  margin-top: -13px;
 }
+.chat-detail__message--bot p {margin-top:0}
 
 .chat-detail__icon {
   margin-right: 8px;
+  font-size: 1.5rem;
+
 }
 
 .chat-detail__input-container {

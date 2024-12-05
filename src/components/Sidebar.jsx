@@ -12,7 +12,7 @@ function Sidebar({ onSelectConversation }) {
         conv.id === id
           ? {
               ...conv,
-              status: conv.status === "HOLD ON" ? "pending" : "HOLD ON",
+              status: conv.status === "Auto Pilot Off" ? "pending" : "Auto Pilot Off",
             }
           : { ...conv, status: "pending" }
       );
@@ -29,61 +29,49 @@ function Sidebar({ onSelectConversation }) {
           timestamp: generateTimestamp(),
         })
       );
+      
 
       return updatedConversations;
     });
   };
 
   return (
-    <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      <div
-        style={{
-          padding: "16px",
-          borderBottom: "1px solid #333",
-          fontSize: "18px",
-          fontWeight: "bold",
-        }}
-      >
+    <div className="sidebar-inner">
+      <div className="sidebar-title">
         Conversations
       </div>
       <ul style={{ flex: 1, overflowY: "auto", padding: 0, margin: 0 }}>
         {conversations.map((conversation) => (
-          <li
+          <li className="conversation-item"
             key={conversation.id}
             onClick={() => onSelectConversation(conversation.id)}
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
               backgroundColor:
-                conversation.status === "HOLD ON" ? "#594141" : "#fff",
-              border: "1px solid #ddd",
-              marginBottom: "8px",
-              borderRadius: "8px",
-              padding: "8px",
-              cursor: "pointer",
-              listStyleType: "none",
+                conversation.status === "Auto Pilot Off" ? "rgb(23 177 198 / 50%)" : "#dddddd1f",
+              transform:
+                conversation.status === "Auto Pilot Off" ? "scale(0.95)" : "scale(1)",
             }}
           >
             <div>
               <div style={{ fontWeight: "bold" }}>{conversation.title}</div>
-              <div style={{ fontSize: "12px", color: "#666" }}>
-                {conversation.status}
-              </div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               {/* Toggle Switch */}
               <label
                 style={{ display: "flex", alignItems: "center", gap: "4px" }}
               >
-                <input
+                <input className="toggle-switch"
                   type="checkbox"
-                  checked={conversation.status === "HOLD ON"}
+                  checked={conversation.status === "Auto Pilot Off"}
                   onChange={() => handleToggleConversation(conversation.id)}
                 />
-                <span>Toggle</span>
+                <span>Ai Bot Off</span>
               </label>
             </div>
+              <div className="sidebar-list-item-status">
+                {conversation.status}
+              </div>
+            </div>
+            
           </li>
         ))}
       </ul>
