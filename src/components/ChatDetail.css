@@ -6,7 +6,7 @@
   height: 100%;
 }
 
- .chat-detail-container {height: 90vh;}
+.chat-detail-container {height: 90vh;}
 
 .chat-detail__messages {
   flex: 1;
@@ -16,6 +16,12 @@
   scrollbar-color: rgb(112, 106, 93) rgb(6, 6, 6);
 }
 
+.chat-detail__messages > div:first-child {
+  margin-top: 2rem;}
+
+.chat-detail__messages > div:last-child {
+  margin-bottom: 16rem;
+}
 
 
 
