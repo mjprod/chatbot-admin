@@ -12,11 +12,7 @@
   background-color: inherit;
 }
 
-.chat-detail {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem;
-}
+
 .chat-detail h6 {
   color: rgb(118, 118, 118);
   font-size: clamp(1rem, 0.9432rem + 0.2841vw, 1.125rem);

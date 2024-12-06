@@ -56,7 +56,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
   }
 
   return (
-    <div className="chat-detail">
+    <div className="chat-detail-container">
       <div className="chat-detail__messages">
         {conversation.messages.map((msg, index) => (
           <div
