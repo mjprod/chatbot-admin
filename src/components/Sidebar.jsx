@@ -60,7 +60,7 @@ function Sidebar({ onSelectConversation }) {
             onClick={() => onSelectConversation(conversation.id)}
             style={{
               backgroundColor:
-                conversation.status === "HOLD ON" ? "#373229" : "#dddddd1f",
+                conversation.status === "HOLD ON" ? "rgba(221, 221, 221, 0.12)" : "#dddddd1f",
               transform:
                 conversation.status === "HOLD ON" ? "scale(0.95)" : "scale(1)",
                 marginTop:

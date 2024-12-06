@@ -12,25 +12,34 @@
   background-color: inherit;
 }
 
-
 .chat-detail h6 {
   color: rgb(118, 118, 118);
   font-size: clamp(1rem, 0.9432rem + 0.2841vw, 1.125rem);
 }
 
-/* media querie for mobile */
-@media screen and (max-width: 768px) {
+/* media querie for tablet */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .admin-panel {
     display: flex;
     flex-direction: column-reverse;
-    
     justify-content: flex-end;
   }
 
   .main-content {
     height: 70%;
   }
-  
+}
 
 
+/* media querie for mobile */
+@media screen and (max-width: 768px) {
+  .admin-panel {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
+
+  .main-content {
+    height: 70%;
+  }
 }
