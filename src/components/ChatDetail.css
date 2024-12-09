@@ -8,7 +8,9 @@
   justify-content: center;
 }
 
-.chat-detail-container {height: 90vh;}
+.chat-detail {height: 100lvh;}
+
+.chat-detail-container {height: 100%; display: grid; grid-template-rows: 1fr auto;}
 
 .chat-detail__messages {
   flex: 1;
