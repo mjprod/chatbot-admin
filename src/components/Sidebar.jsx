@@ -52,7 +52,7 @@ function Sidebar({ onSelectConversation }) {
   return (
     <div className="sidebar-inner">
       <div className="sidebar-title">
-        Conversations
+      即時對話框
       </div>
       <ul className="chat-card-container">
         {conversations.map((conversation) => (
