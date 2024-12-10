@@ -4,6 +4,7 @@ import ChatDetail from "../components/ChatDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSocketContext } from "../context/SocketContext";
+import "./AdminPanel.css";
 
 function AdminPanel() {
   const [selectedConversationId, setSelectedConversationId] = useState(null); // Selected conversation
@@ -60,11 +61,6 @@ function AdminPanel() {
 
   return (
     <div className="admin-panel">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <Sidebar onSelectConversation={handleSelectConversation} />
-      </div>
-
       {/* Main content */}
       <div className="main-content">
         <div className="chat-detail">
@@ -75,8 +71,12 @@ function AdminPanel() {
         </div>
         <div ref={messagesEndRef} />
       </div>
+      {/* Sidebar */}
+      <div className="sidebar">
+        <Sidebar onSelectConversation={handleSelectConversation} />
+      </div>
       <ToastContainer position="top-right" autoClose={5000} />
-    </div>
+    </div> 
   );
 }
 

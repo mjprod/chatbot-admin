@@ -3,6 +3,7 @@ import { useSocketContext } from "../context/SocketContext";
 import { generateTimestamp } from "../utils/timestamp.js";
 import "./ChatDetail.css"; // Import the CSS file
 
+
 function ChatDetail({ conversationId, onSendMessage }) {
   const [message, setMessage] = useState("");
 
@@ -56,14 +57,13 @@ function ChatDetail({ conversationId, onSendMessage }) {
   }
 
   return (
-    <div className="chat-detail">
+    <div className="chat-detail-container">
       <div className="chat-detail__messages">
         {conversation.messages.map((msg, index) => (
           <div
             key={index}
-            className={`chat-detail__message ${
-              msg.sender === "bot" ? "chat-detail__message--bot" : ""
-            }`}
+            className={`chat-detail__message--${msg.sender}`}
+         
           >
             <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
             <p>{msg.text}</p>
@@ -80,7 +80,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
             placeholder="Write a message..."
           />
           <button className="chat-detail__button" onClick={handleSend}>
-            Send
+          <span className="button-chev">› </span>
           </button>
         </div>
       )}

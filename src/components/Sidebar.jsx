@@ -29,6 +29,7 @@ function Sidebar({ onSelectConversation }) {
           timestamp: generateTimestamp(),
         })
       );
+      
 
       sendMessage(
         JSON.stringify({
@@ -49,55 +50,50 @@ function Sidebar({ onSelectConversation }) {
   };
 
   return (
-    <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      <div
-        style={{
-          padding: "16px",
-          borderBottom: "1px solid #333",
-          fontSize: "18px",
-          fontWeight: "bold",
-        }}
-      >
+    <div className="sidebar-inner">
+      <div className="sidebar-title">
         Conversations
       </div>
-      <ul style={{ flex: 1, overflowY: "auto", padding: 0, margin: 0 }}>
+      <ul className="chat-card-container">
         {conversations.map((conversation) => (
-          <li
+          <li className="conversation-item"
             key={conversation.id}
             onClick={() => onSelectConversation(conversation.id)}
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
               backgroundColor:
-                conversation.status === "HOLD ON" ? "#594141" : "#fff",
-              border: "1px solid #ddd",
-              marginBottom: "8px",
-              borderRadius: "8px",
-              padding: "8px",
-              cursor: "pointer",
-              listStyleType: "none",
+                conversation.status === "HOLD ON" ? "rgba(221, 221, 221, 0.03)" : "rgba(221, 221, 221, 0.12)",
+              transform:
+                conversation.status === "HOLD ON" ? "scale(0.95)" : "scale(1)",
+                marginTop:
+                conversation.status === "HOLD ON" ? "1rem" : "0.5rem",
+                borderLeft:
+                conversation.status === "HOLD ON" ? "3px dashed #b7ffd2ca" : "initial",
+                paddingLeft:
+                conversation.status === "HOLD ON" ? "1.1rem" : "1rem",
             }}
           >
             <div>
               <div style={{ fontWeight: "bold" }}>{conversation.title}</div>
-              <div style={{ fontSize: "12px", color: "#666" }}>
-                {conversation.status}
-              </div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               {/* Toggle Switch */}
               <label
                 style={{ display: "flex", alignItems: "center", gap: "4px" }}
               >
-                <input
-                  type="checkbox"
-                  checked={conversation.status === "HOLD ON"}
-                  onChange={() => handleToggleConversation(conversation.id)}
-                />
-                <span>Toggle</span>
+               <input
+  className="toggle-switch"
+  type="checkbox"
+  checked={conversation.status === "HOLD ON"}
+  onChange={() => handleToggleConversation(conversation.id)}
+/>
+                <span>{conversation.status === "HOLD ON" ? "Auto Pilot | Off " : "Auto Pilot | On"}</span>
               </label>
             </div>
+          
+              <div className="sidebar-list-item-status">
+              {conversation.status === "HOLD ON" ? "You have taken Control" : "🤖 Ai is answering…"}
+              </div>
+            </div>
+            
           </li>
         ))}
       </ul>
