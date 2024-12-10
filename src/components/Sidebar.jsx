@@ -78,11 +78,12 @@ function Sidebar({ onSelectConversation }) {
               <label
                 style={{ display: "flex", alignItems: "center", gap: "4px" }}
               >
-                <input className="toggle-switch"
-                  type="checkbox"
-                  checked={conversation.status === "HOLD ON"}
-                  onChange={() => handleToggleConversation(conversation.id)}
-                />
+               <input
+  className="toggle-switch"
+  type="checkbox"
+  checked={conversation.status === "HOLD ON"}
+  onChange={() => handleToggleConversation(conversation.id)}
+/>
                 <span>{conversation.status === "HOLD ON" ? "Auto Pilot | Off " : "Auto Pilot | On"}</span>
               </label>
             </div>
