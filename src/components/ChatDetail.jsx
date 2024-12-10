@@ -12,7 +12,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
 
   useEffect(() => {
     if (conversation) {
-      console.log("conversation", conversation);
+      //console.log("conversation", conversation);
     }
   }, [conversation]);
 
