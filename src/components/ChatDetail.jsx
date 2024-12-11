@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSocketContext } from "../context/SocketContext";
 import { generateTimestamp } from "../utils/timestamp.js";
 import "./ChatDetail.css"; // Import the CSS file
+import Feedback from "./Feedback.jsx";
 
 function ChatDetail({ conversationId, onSendMessage }) {
   const [message, setMessage] = useState("");
@@ -12,7 +13,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
 
   useEffect(() => {
     if (conversation) {
-      //console.log("conversation", conversation);
+      console.log("conversation", conversation);
     }
   }, [conversation]);
 
@@ -73,7 +74,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
               >
                 <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
                 <div>
-                  <p>{msg.text}</p>
+                  <p>{msg.user_input}</p>
                   <button
                     className="chat-detail__expand-btn"
                     onClick={() => handleToggleExpand(index)}
@@ -83,9 +84,41 @@ function ChatDetail({ conversationId, onSendMessage }) {
                       : "Show Response"}
                   </button>
                   {expandedMessageIndex === index && (
-                    <div className="chat-detail__expanded-response">
-                      <p>{msg.response}</p>
-                    </div>
+                    <>
+                      <div className="chat-detail__expanded-response">
+                        <p>{msg.text}</p>
+                      </div>
+                      {
+                        <Feedback
+                          onLike={() => {
+                            //const updatedMessages = [...messages];
+                            //updatedMessages[index] = {
+                            //...msg,
+                            //feedback: "liked",
+                            //};
+                            //setMessages(updatedMessages);
+                          }}
+                          onDislike={() => {
+                            //const updatedMessages = [...messages];
+                            //updatedMessages[index] = {
+                            //...msg,
+                            //feedback: "disliked",
+                            //};
+                            //setMessages(updatedMessages);
+                          }}
+                          onClearThumbs={() => {
+                            //const updatedMessages = [...messages];
+                            //updatedMessages[index] = { ...msg, feedback: "" };
+                            //setMessages(updatedMessages);
+                          }}
+                          //lastMessage={lastMessage}
+                          //aiAnswer={aiAnswer}
+                          //language={selectedLanguages}
+                          //chatBodyRef={chatBodyRef}
+                          conversation_id={conversationId}
+                        />
+                      }
+                    </>
                   )}
                 </div>
               </div>
@@ -94,15 +127,17 @@ function ChatDetail({ conversationId, onSendMessage }) {
 
           // Default layout for "bot", "admin", and "user"
           return (
-            <div
-              key={index}
-              className={`chat-detail__message ${
-                msg.sender === "bot" ? "chat-detail__message--bot" : ""
-              }`}
-            >
-              <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
-              <p>{msg.text}</p>
-            </div>
+            <>
+              <div
+                key={index}
+                className={`chat-detail__message ${
+                  msg.sender === "bot" ? "chat-detail__message--bot" : ""
+                }`}
+              >
+                <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
+                <p>{msg.text}</p>
+              </div>
+            </>
           );
         })}
       </div>
