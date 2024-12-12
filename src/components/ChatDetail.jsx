@@ -40,7 +40,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
       case "bot":
         return "🤖";
       case "bot_on_hold":
-        return "🛠️";
+        return "⏳";
       case "user":
         return "👤";
       case "admin":
@@ -130,9 +130,7 @@ function ChatDetail({ conversationId, onSendMessage }) {
             <>
               <div
                 key={index}
-                className={`chat-detail__message ${
-                  msg.sender === "bot" ? "chat-detail__message--bot" : ""
-                }`}
+                className={`chat-detail__message--${msg.sender}`}
               >
                 <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
                 <p>{msg.text}</p>

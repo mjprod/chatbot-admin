@@ -29,33 +29,43 @@ function AdminPanel() {
       messages: [
         {
           sender: "bot",
-          text: "Hey Glauco, how can I help you?",
+          text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
         },
         {
           sender: "user",
-          text: "dfd",
+          text: "Hai, saya perlukan bantuan dengan akaun saya. Saya cuba mengeluarkan kemenangan saya, tetapi transaksi nampaknya tergendala. Boleh anda periksa untuk saya?",
+        },
+        
+        {
+          user_input: "Hai, saya perlukan bantuan dengan akaun saya. Saya cuba mengeluarkan kemenangan saya, tetapi transaksi nampaknya tergendala. Boleh anda periksa untuk saya?",
+          sender: "bot",
+          text: "Transaksi biasanya mengambil masa sehingga 3 hari bekerja, tetapi saya lihat anda sudah pada hari ke-4. Saya akan eskalasi perkara ini kepada pasukan kewangan kami untuk resolusi yang lebih cepat.",
         },
         {
-          user_input: "dfd",
-          sender: "bot_on_hold",
-          text: `English
-- Dear Player,
-
-I am your gaming and gambling platform assistant, here to provide you with precise information and support. How may I assist you today?
-
-Malay
-- Pemain yang dihormati,
-
-Saya adalah pembantu platform permainan dan perjudian anda, di sini untuk memberikan maklumat dan sokongan yang tepat. Bagaimana saya boleh membantu anda hari ini?
-
-Chinese
-- 亲爱的玩家，
-
-我是您的游戏和博彩平台助手，随时为您提供准确的信息和支持。请问今天有什么可以帮助您的吗？`,
+          sender: "user",
+          text: "Terima kasih, tetapi ia agak mengecewakan. Saya telah menunggu lebih lama daripada yang dijangkakan. Adakah sebab untuk kelewatan ini?",
+        },
+        
+        {
+          sender: "bot",
+          text: "Saya benar-benar memahami kekecewaan anda, dan saya mohon maaf atas kelewatan ini. Nampaknya kelewatan disebabkan oleh jumlah transaksi yang tinggi baru-baru ini. Saya akan pastikan kes anda diutamakan. Anda seharusnya menerima kemas kini dalam masa 24 jam.",
+        },
+        
+        {
+          sender: "user",
+          text: "Baiklah, saya harap begitu. Boleh anda hantar pengesahan sebaik sahaja ia diselesaikan?",
         },
         {
-          sender: "admin",
-          text: "how?",
+          sender: "bot",
+          text: "Sudah tentu! Saya akan pastikan anda dikemas kini melalui emel sebaik sahaja pasukan kewangan memproses permintaan anda. Adakah ada apa-apa lagi yang boleh saya bantu sementara itu?",
+        },
+        {
+          sender: "user",
+          text: "Tidak, itu sahaja buat masa ini. Terima kasih atas bantuan anda.",
+        },
+        {
+          sender: "bot",
+          text: "Sama-sama! Terima kasih atas kesabaran anda, dan saya akan segera menindaklanjuti perkara ini. Selamat hari! 😊",
         },
       ],
     };

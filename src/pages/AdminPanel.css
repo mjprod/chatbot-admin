@@ -57,13 +57,13 @@
 }
 
 /* width */
-.chat-card-container::-webkit-scrollbar {
+.chat-detail__messages::-webkit-scrollbar, .chat-card-container::-webkit-scrollbar {
   width: 0.8rem;
   border-radius: 1rem;
 }
 
 /* Track */
-.chat-card-container::-webkit-scrollbar-track {
+.chat-detail__messages::-webkit-scrollbar-track, .chat-card-container::-webkit-scrollbar-track {
   background: #323232;
   box-shadow: 0 5px 2px black inset;
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -71,25 +71,20 @@
 }
 
 /* Handle */
-.chat-card-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    hsl(32, 41%, 73%),
-    hsl(44, 100%, 88%) 42.86%,
-    rgb(222, 199, 166) 43.28%,
-    hsl(32, 41%, 73%)
-  );
+.chat-detail__messages::-webkit-scrollbar-thumb, .chat-card-container::-webkit-scrollbar-thumb {
+  background: rgb(80, 80, 80);
   box-shadow: 0 1px 1rem black;
   border-radius: 1rem;
-  border: 1px solid color(srgb 1 0.9259 0.805 / 0.51);
+  border: 1px solid rgb(105, 105, 105, 0.5);
   opacity: 0.85;
 }
 
 /* Handle on hover */
-.chat-card-container::-webkit-scrollbar-thumb:hover {
+.chat-detail__messages::-webkit-scrollbar-thumb:hover, .chat-card-container::-webkit-scrollbar-thumb:hover {
   opacity: 1;
 }
 
-/******* 🤖🤖🤖🤖🤖🤖 Ai Bot [start]🤖🤖🤖🤖🤖 ******/
+/******* 🤖🤖🤖🤖🤖🤖 Ai Bot [Start]🤖🤖🤖🤖🤖 ******/
 
 .chat-detail__message--bot {
   color: #80a29f;
@@ -120,18 +115,18 @@
 
 .chat-detail__message--bot::after,
 .chat-detail__message--bot::before {
-  content: '';
+  content: "";
   position: absolute;
   background: conic-gradient(
     from var(--conicangle),
-    hsl(0, 50%, 30%),
-    hsl(156, 50%, 30%),
-    hsl(215, 50%, 30%),
-    hsl(325, 50%, 30%),
-    hsl(0, 50%, 30%)
+    hsl(0, 50%, 60%),
+    hsl(156, 50%, 60%),
+    hsl(215, 50%, 60%),
+    hsl(325, 50%, 60%),
+    hsl(0, 50%, 60%)
   );
   width: 100.25%;
-  height: 104%;
+  height: 102%;
   opacity: 1;
   top: 50%;
   left: 50%;
@@ -140,8 +135,6 @@
   border-radius: 9px;
   animation: 4s spin linear infinite;
 }
-
-
 
 @keyframes spin {
   0% {
@@ -152,12 +145,7 @@
   }
 }
 
-/******* 🤖🤖🤖🤖🤖🤖 Ai Bot [end]  🤖🤖🤖🤖🤖🤖******/
-
-
-
-
-
+/******* 🤖🤖🤖🤖🤖🤖 Ai Bot [End]  🤖🤖🤖🤖🤖🤖 ******/
 
 /******* 👤👤👤👤👤👤 User [start] 👤👤👤👤👤👤 ******/
 .chat-detail__message--user {
@@ -186,11 +174,8 @@
 
 /******* 👤👤👤👤👤👤👤 User [end] 👤👤👤👤👤👤👤 ******/
 
+/******* 🛠️🛠️🛠️🛠️🛠️ Bot on Hold [start] 🛠️🛠️🛠️🛠️🛠️ ******/
 
-
-
-
-/******* Bot on Hold [start] ******/
 .chat-detail__message--bot-on-hold {
   color: #b7ffd2ca;
   display: flex;
@@ -208,9 +193,41 @@
   user-select: none;
 }
 
-/******* Bot on Hold [end] ******/
+.chat-detail__message.chat-detail__message--bot-on-hold .chat-detail__icon {
+  filter: saturate(0);
+}
 
-/* Admin styles */
+.chat-detail__message--bot-on-hold p {
+  margin-top: 0;
+}
+
+ .chat-detail__expand-btn {border: 1px solid red;
+  min-height: 2rem;
+  border-radius: 1rem 0 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
+  background-color: transparent;
+  color: white;}
+.chat-detail__expanded-response {border:1px solid #90f9b640; padding: 1rem; max-width: 98%; border-radius: 0.5rem;}
+
+.feedback-buttons {
+  gap: 0.2rem;
+  display: flex;
+  margin-left: 0.8%;
+}
+.thumb {
+  border-left: 1px solid #90f9b640;
+  border-right: 1px solid #90f9b640;
+  border-bottom: 1px solid #90f9b640;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+/******* 🛠️🛠️🛠️🛠️🛠️ Bot on Hold [End] 🛠️🛠️🛠️🛠️🛠️ ******/
+
+/******* 👨‍💻👨‍💻👨‍💻👨‍💻👨‍💻 Admin on Hold [start] 👨‍💻👨‍💻👨‍💻👨‍💻👨‍💻 ******/
+
 .chat-detail__message--admin {
   border: 1px solid #ffdea8;
   color: #000;
@@ -236,6 +253,7 @@
 .chat-detail__message--admin p {
   margin-top: 0;
 }
+/******* 👨‍💻👨‍💻👨‍💻👨‍💻👨‍💻 Admin on Hold [End] 👨‍💻👨‍💻👨‍💻👨‍💻👨‍💻 ******/
 
 .chat-detail__input-container {
   gap: 1rem;
