@@ -41,7 +41,7 @@
   flex: 1;
   overflow-y: auto;
   height: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .chat-detail__messages > div:first-child {
@@ -54,6 +54,7 @@
 
 .chat-detail__messages > div {
   margin-top: 1rem;
+  margin-right: 2rem;
 }
 
 /* width */
@@ -337,6 +338,12 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  border: 1px solid #3d3d3d;
+  border-radius: 1rem;
+  margin:1.5rem;
+  background-color: rgba(35, 35, 35, 0.241);
+  box-shadow: -1px 8px 21px rgba(0, 0, 0, 0.38);
+
 }
 
 .sidebar-inner::after {
@@ -364,6 +371,9 @@
   flex-direction: column;
   flex: 1 1 500px;
   scrollbar-color: rgb(112, 106, 93) rgb(6, 6, 6);
+  padding: 2rem;
+ 
+  
 }
 
 .sidebar-list {
