@@ -61,15 +61,17 @@ function Sidebar({ onSelectConversation }) {
             onClick={() => onSelectConversation(conversation.id)}
             style={{
               backgroundColor:
-                conversation.status === "HOLD ON" ? "rgba(221, 221, 221, 0.03)" : "rgba(221, 221, 221, 0.12)",
+                conversation.status === "HOLD ON" ? "rgba(110, 95, 67, 0.4)" : "rgba(148, 148, 148, 0.12)",
               transform:
                 conversation.status === "HOLD ON" ? "scale(0.95)" : "scale(1)",
                 marginTop:
                 conversation.status === "HOLD ON" ? "1rem" : "0.5rem",
                 borderLeft:
-                conversation.status === "HOLD ON" ? "3px dashed #b7ffd2ca" : "initial",
+                conversation.status === "HOLD ON" ? "3px solid #FBE9BC" : "initial",
                 paddingLeft:
                 conversation.status === "HOLD ON" ? "1.1rem" : "1rem",
+                boxShadow:
+                conversation.status === "HOLD ON" ? "-3px 7px 5px rgba(24, 24, 24, 0.58) inset, 0 2px 0 rgba(212, 212, 212, 0.24)" : "initial",
             }}
           >
             <div>
