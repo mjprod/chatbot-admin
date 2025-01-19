@@ -4,7 +4,7 @@ import { generateTimestamp } from "../utils/timestamp.js";
 import "./ChatDetail.css"; // Import the CSS file
 import Feedback from "./Feedback.jsx";
 
-function ChatDetail({ conversationId, onSendMessage }) {
+const ChatDetail = ({ conversationId, onSendMessage }) => {
   const [message, setMessage] = useState("");
   const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
 
@@ -63,13 +63,15 @@ function ChatDetail({ conversationId, onSendMessage }) {
   };
 
   return (
-    <div className="chat-detail-container">
+    <div key={conversationId} className="chat-detail-container">
       <div className="chat-detail__messages">
         {conversation.messages.map((msg, index) => {
+          const key = msg.id || `${conversationId}-message-${index}`;
+
           if (msg.sender === "bot_on_hold") {
             return (
               <div
-                key={index}
+                key={key}
                 className="chat-detail__message chat-detail__message--bot-on-hold"
               >
                 <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
@@ -127,15 +129,13 @@ function ChatDetail({ conversationId, onSendMessage }) {
 
           // Default layout for "bot", "admin", and "user"
           return (
-            <>
-              <div
-                key={index}
+            <div
+              key={index}
                 className={`chat-detail__message--${msg.sender}`}
               >
                 <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
                 <p>{msg.text}</p>
-              </div>
-            </>
+            </div>
           );
         })}
       </div>
