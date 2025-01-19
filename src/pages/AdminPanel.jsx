@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import Sidebar from "../components/Sidebar";
-import ChatDetail from "../components/ChatDetail";
+import React, { useEffect, useRef, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ChatDetail from "../components/ChatDetail";
+import Sidebar from "../components/Sidebar";
 import { useSocketContext } from "../context/SocketContext";
 import "./AdminPanel.css";
 
@@ -20,6 +20,7 @@ function AdminPanel() {
   };
 
   //TESTER
+
   useEffect(() => {
     const conversation = {
       id: "85fd05b1-04e2-43cc-a8e5-bcbb6c2c790d",
@@ -70,8 +71,8 @@ function AdminPanel() {
       ],
     };
     setConversations((prev) => [...prev, conversation]);
-  }, []);
-
+  }, [setConversations]);
+  
   useEffect(() => {
     scrollToBottom();
     console.log(conversations);
@@ -117,10 +118,15 @@ function AdminPanel() {
       {/* Main content */}
       <div className="main-content">
         <div className="chat-detail">
-          <ChatDetail
-            conversationId={selectedConversationId}
-            onSendMessage={handleSendMessage}
-          />
+        {selectedConversationId ? (
+    <ChatDetail
+      key={String(selectedConversationId)}
+      conversationId={selectedConversationId}
+      onSendMessage={handleSendMessage}
+    />
+  ) : (
+    <div>Select a conversation to view details.</div>
+  )}
         </div>
         <div ref={messagesEndRef} />
       </div>

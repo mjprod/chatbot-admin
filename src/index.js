@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
 
 // Define o tema dark
 const darkTheme = createTheme({
@@ -24,10 +24,12 @@ const darkTheme = createTheme({
   },
 });
 
-ReactDOM.render(
+
+const container = document.getElementById("root");
+const root = createRoot(container); // Create a root for your app
+root.render(
   <ThemeProvider theme={darkTheme}>
     <CssBaseline /> {/* Reseta estilos globais para aderir ao tema */}
     <App />
   </ThemeProvider>,
-  document.getElementById("root")
-);
+  );
