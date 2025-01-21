@@ -77,7 +77,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
     <div key={conversationId} className="chat-detail-container">
       <ChatHeader
         conversation={conversation}
-      />;
+      />
       <div className="chat-detail__messages">
         {conversation.messages.map((msg, index) => {
           const key = msg.id || `${conversationId}-message-${index}`;
