@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import "./Rating.css"; // Optional CSS for styling
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import './Rating.css'; // Optional CSS for styling
 
 const Rating = ({ maxRating = 6, initialRating = 0, onRatingChange }) => {
   const [hoveredRating, setHoveredRating] = useState(null);
@@ -26,7 +26,7 @@ const Rating = ({ maxRating = 6, initialRating = 0, onRatingChange }) => {
       return (
         <span
           key={index}
-          className={`star ${isFilled ? "filled" : ""}`}
+          className={`star ${isFilled ? 'filled' : ''}`}
           onMouseEnter={() => handleMouseEnter(ratingValue)}
           onMouseLeave={handleMouseLeave}
           onClick={() => handleClick(ratingValue)}

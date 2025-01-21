@@ -1,0 +1,9 @@
+{
+  "welcome": "Welcome",
+  "select_conversation_to_view": "Select a conversation to view details.",
+  "conversation_with": "Conversation with {{user}}",
+  "conversation_id": "Conversation ID: {{id}}",
+  "total": "Total:",
+  "last_reply": "Last Reply: ",
+  "language": "Language: "
+}

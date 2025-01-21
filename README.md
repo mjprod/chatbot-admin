@@ -17,7 +17,7 @@
 </p>
 <br>
 
-##  Table of Contents
+## Table of Contents
 
 - [ Overview](#-overview)
 - [ Features](#-features)
@@ -35,28 +35,28 @@
 
 ---
 
-##  Overview
+## Overview
 
 "Chatbot-admin.git is a project that simplifies real-time communication between users and support staff through a secure WebSocket server. Its key features include a visually appealing user interface, seamless message handling, and dynamic conversation management. Ideal for enhancing user engagement and streamlining chat interactions in customer support scenarios."
 
 ---
 
-##  Features
+## Features
 
-|      | Feature         | Summary       |
-| :--- | :---:           | :---          |
-| ⚙️  | **Architecture**  | <ul><li>Utilizes **WebSocket** for real-time communication in the `websocket_server.js` file.</li><li>**React** application structure with **Material-UI** components for consistent styling in `src/index.js`.</li><li>Centralized **context providers** in `src/App.js` for data flow and authentication.</li></ul> |
-| 🔩 | **Code Quality**  | <ul><li>Enhanced **Jest matchers** for DOM nodes in `src/setupTests.js`.</li><li>Utilizes **@testing-library/react** for testing components like `src/App.test.js`.</li><li>**Web-vitals** library integration for performance metrics in `src/reportWebVitals.js`.</li></ul> |
-| 📄 | **Documentation** | <ul><li>**Conversation data** management in `src/json/data.json` for user, admin, and bot interactions.</li><li>**Authentication context** in `src/context/AuthContext.jsx` for managing user authentication.</li><li>**Timestamp utility** in `src/utils/timestamp.js` for precise timestamp generation.</li></ul> |
-| 🔌 | **Integrations**  | <ul><li>**Material-UI components** integration for consistent styling and user interface in various components.</li><li>**WebSocket** integration for real-time updates and communication in `src/hook/useWebSocket.js`.</li><li>**@emotion/styled** for styling components in `src/components/ChatDetail.css`.</li></ul> |
-| 🧩 | **Modularity**    | <ul><li>**Component-based architecture** with separate files for different functionalities like `src/components/Notifications.jsx`.</li><li>**Context providers** for managing data flow and authentication in `src/context`.</li><li>**Utility functions** like timestamp generation in `src/utils/timestamp.js` for modular tasks.</li></ul> |
-| 🧪 | **Testing**       | <ul><li>**Enhanced Jest matchers** for improved testing capabilities in `src/setupTests.js`.</li><li>**@testing-library/react** for component testing in `src/App.test.js`.</li><li>**Web-vitals** library for performance testing in `src/reportWebVitals.js`.</li></ul> |
-| ⚡️  | **Performance**   | <ul><li>**Web-vitals** library usage for tracking and reporting performance metrics.</li><li>**WebSocket** for real-time communication, enhancing user experience.</li><li>**Optimized rendering** with Material-UI components for efficient UI updates.</li></ul> |
-| 🛡️ | **Security**      | <ul><li>**HTTPS server** setup for secure WebSocket communication in `websocket_server.js`.</li><li>**Authentication context** in `src/context/AuthContext.jsx` for managing user authentication securely.</li><li>**Robots.txt** for defining crawling permissions and search engine visibility in `public/robots.txt`.</li></ul> |
+|     |      Feature      | Summary                                                                                                                                                                                                                                                                                                                                        |
+| :-- | :---------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ⚙️  | **Architecture**  | <ul><li>Utilizes **WebSocket** for real-time communication in the `websocket_server.js` file.</li><li>**React** application structure with **Material-UI** components for consistent styling in `src/index.js`.</li><li>Centralized **context providers** in `src/App.js` for data flow and authentication.</li></ul>                          |
+| 🔩  | **Code Quality**  | <ul><li>Enhanced **Jest matchers** for DOM nodes in `src/setupTests.js`.</li><li>Utilizes **@testing-library/react** for testing components like `src/App.test.js`.</li><li>**Web-vitals** library integration for performance metrics in `src/reportWebVitals.js`.</li></ul>                                                                  |
+| 📄  | **Documentation** | <ul><li>**Conversation data** management in `src/json/data.json` for user, admin, and bot interactions.</li><li>**Authentication context** in `src/context/AuthContext.jsx` for managing user authentication.</li><li>**Timestamp utility** in `src/utils/timestamp.js` for precise timestamp generation.</li></ul>                            |
+| 🔌  | **Integrations**  | <ul><li>**Material-UI components** integration for consistent styling and user interface in various components.</li><li>**WebSocket** integration for real-time updates and communication in `src/hook/useWebSocket.js`.</li><li>**@emotion/styled** for styling components in `src/components/ChatDetail.css`.</li></ul>                      |
+| 🧩  |  **Modularity**   | <ul><li>**Component-based architecture** with separate files for different functionalities like `src/components/Notifications.jsx`.</li><li>**Context providers** for managing data flow and authentication in `src/context`.</li><li>**Utility functions** like timestamp generation in `src/utils/timestamp.js` for modular tasks.</li></ul> |
+| 🧪  |    **Testing**    | <ul><li>**Enhanced Jest matchers** for improved testing capabilities in `src/setupTests.js`.</li><li>**@testing-library/react** for component testing in `src/App.test.js`.</li><li>**Web-vitals** library for performance testing in `src/reportWebVitals.js`.</li></ul>                                                                      |
+| ⚡️ |  **Performance**  | <ul><li>**Web-vitals** library usage for tracking and reporting performance metrics.</li><li>**WebSocket** for real-time communication, enhancing user experience.</li><li>**Optimized rendering** with Material-UI components for efficient UI updates.</li></ul>                                                                             |
+| 🛡️  |   **Security**    | <ul><li>**HTTPS server** setup for secure WebSocket communication in `websocket_server.js`.</li><li>**Authentication context** in `src/context/AuthContext.jsx` for managing user authentication securely.</li><li>**Robots.txt** for defining crawling permissions and search engine visibility in `public/robots.txt`.</li></ul>             |
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```sh
 └── chatbot-admin.git/
@@ -89,8 +89,8 @@
     └── yarn.lock
 ```
 
+### Project Index
 
-###  Project Index
 <details open>
 	<summary><b><code>CHATBOT-ADMIN.GIT/</code></b></summary>
 	<details> <!-- __root__ Submodule -->
@@ -255,34 +255,35 @@
 </details>
 
 ---
-##  Getting Started
 
-###  Prerequisites
+## Getting Started
+
+### Prerequisites
 
 Before getting started with chatbot-admin.git, ensure your runtime environment meets the following requirements:
 
 - **Programming Language:** JavaScript
 - **Package Manager:** Yarn, Npm
 
-
-###  Installation
+### Installation
 
 Install chatbot-admin.git using one of the following methods:
 
 **Build from source:**
 
 1. Clone the chatbot-admin.git repository:
+
 ```sh
 ❯ git clone https://github.com/mjprod/chatbot-admin.git
 ```
 
 2. Navigate to the project directory:
+
 ```sh
 ❯ cd chatbot-admin.git
 ```
 
 3. Install the project dependencies:
-
 
 **Using `yarn`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style={badge_style}&logo=yarn&logoColor=white" />](https://yarnpkg.com/)
 
@@ -290,17 +291,14 @@ Install chatbot-admin.git using one of the following methods:
 ❯ yarn install
 ```
 
-
 **Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
 
 ```sh
 ❯ npm install
 ```
 
+### Usage
 
-
-
-###  Usage
 Run chatbot-admin.git using the following command:
 **Using `yarn`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style={badge_style}&logo=yarn&logoColor=white" />](https://yarnpkg.com/)
 
@@ -308,15 +306,14 @@ Run chatbot-admin.git using the following command:
 ❯ yarn start
 ```
 
-
 **Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
 
 ```sh
 ❯ npm start
 ```
 
+### Testing
 
-###  Testing
 Run the test suite using the following command:
 **Using `yarn`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style={badge_style}&logo=yarn&logoColor=white" />](https://yarnpkg.com/)
 
@@ -324,24 +321,23 @@ Run the test suite using the following command:
 ❯ yarn test
 ```
 
-
 **Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
 
 ```sh
 ❯ npm test
 ```
 
-
 ---
-##  Project Roadmap
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
+## Project Roadmap
+
+- [x] **`Task 1`**: <strike>Implement feature one.</strike>
 - [ ] **`Task 2`**: Implement feature two.
 - [ ] **`Task 3`**: Implement feature three.
 
 ---
 
-##  Contributing
+## Contributing
 
 - **💬 [Join the Discussions](https://github.com/mjprod/chatbot-admin.git/discussions)**: Share your insights, provide feedback, or ask questions.
 - **🐛 [Report Issues](https://github.com/mjprod/chatbot-admin.git/issues)**: Submit bugs found or log feature requests for the `chatbot-admin.git` project.
@@ -384,13 +380,13 @@ Run the test suite using the following command:
 
 ---
 
-##  License
+## License
 
 This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
 ---
 
-##  Acknowledgments
+## Acknowledgments
 
 - List any resources, contributors, inspiration, etc. here.
 

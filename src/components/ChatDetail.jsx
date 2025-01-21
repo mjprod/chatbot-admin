@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useSocketContext } from "../context/SocketContext";
-import { generateTimestamp } from "../utils/timestamp.js";
-import "./ChatDetail.css"; // Import the CSS file
-import Feedback from "./Feedback.jsx";
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useSocketContext } from '../context/SocketContext';
+import { generateTimestamp } from '../utils/timestamp.js';
+import './ChatDetail.css';
+import ChatHeader from './ChatHeader.jsx';
+import Feedback from './Feedback.jsx';
+import FeedbackAI from './FeedbackAi.jsx';
 
 const ChatDetail = ({ conversationId, onSendMessage }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
 
   const { sendMessage, conversations } = useSocketContext();
   const conversation = conversations.find((conv) => conv.id === conversationId);
+  const [visibleDivs, setVisibleDivs] = useState({});
 
   useEffect(() => {
     if (conversation) {
-      console.log("conversation", conversation);
+      console.log('conversation', conversation);
     }
   }, [conversation]);
 
@@ -22,31 +26,31 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
       sendMessage(
         JSON.stringify({
           text: message,
-          sender: "admin",
-          admin_id: "55",
+          sender: 'admin',
+          admin_id: '55',
           conversationID: conversation.id,
-          user: "admin",
+          user: 'admin',
           timestamp: generateTimestamp(),
         })
       );
 
       onSendMessage(message);
-      setMessage("");
+      setMessage('');
     }
   };
 
   const getIcon = (sender) => {
     switch (sender) {
-      case "bot":
-        return "🤖";
-      case "bot_on_hold":
-        return "⏳";
-      case "user":
-        return "👤";
-      case "admin":
-        return "👨‍💻";
+      case 'bot':
+        return '🤖';
+      case 'bot_on_hold':
+        return '⏳';
+      case 'user':
+        return '👤';
+      case 'admin':
+        return '👨‍💻';
       default:
-        return "❓";
+        return '❓';
     }
   };
 
@@ -62,13 +66,22 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
     setExpandedMessageIndex(expandedMessageIndex === index ? null : index);
   };
 
+  const toggleDivVisibility = (index) => {
+    setVisibleDivs((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index],
+    }));
+  };
+
   return (
     <div key={conversationId} className="chat-detail-container">
+      <ChatHeader
+        conversation={conversation}
+      />;
       <div className="chat-detail__messages">
         {conversation.messages.map((msg, index) => {
           const key = msg.id || `${conversationId}-message-${index}`;
-
-          if (msg.sender === "bot_on_hold") {
+          if (msg.sender === 'bot_on_hold') {
             return (
               <div
                 key={key}
@@ -82,8 +95,8 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
                     onClick={() => handleToggleExpand(index)}
                   >
                     {expandedMessageIndex === index
-                      ? "Hide Response"
-                      : "Show Response"}
+                      ? 'Hide Response'
+                      : 'Show Response'}
                   </button>
                   {expandedMessageIndex === index && (
                     <>
@@ -127,20 +140,46 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
             );
           }
 
-          // Default layout for "bot", "admin", and "user"
           return (
-            <div
-              key={index}
+            <div key={conversationId} className="chat-container">
+              <div
+                key={index}
                 className={`chat-detail__message--${msg.sender}`}
               >
                 <span className="chat-detail__icon">{getIcon(msg.sender)}</span>
                 <p>{msg.text}</p>
+              </div>
+
+              {msg.sender === 'bot' && index > 0 && (
+                <div className="fade-div fade-in">
+                  <div className="bottom-bar">
+                    <div className="left-buttons">
+                      <button className="bottom-bar-button">Button 1</button>
+                      <button
+                        className="bottom-bar-button"
+                        onClick={() => toggleDivVisibility(index)}
+                      >
+                        Button 2
+                      </button>
+                    </div>
+                    <div className="right-buttons">
+                      <button className="bottom-bar-button">Button 3</button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* Fading Div */}
+              {visibleDivs[index] && (
+                <div className="fade-div fade-in">
+                  <FeedbackAI />
+                </div>
+              )}
             </div>
           );
         })}
       </div>
 
-      {conversation.status === "HOLD ON" && (
+      {conversation.status === 'HOLD ON' && (
         <div className="chat-detail__input-container">
           <textarea
             className="chat-detail__textarea"
@@ -155,6 +194,10 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
       )}
     </div>
   );
-}
+};
+ChatDetail.propTypes = {
+  conversationId: PropTypes.string.isRequired,
+  onSendMessage: PropTypes.func.isRequired,
+};
 
 export default ChatDetail;

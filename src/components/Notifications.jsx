@@ -1,6 +1,6 @@
-import React from "react";
-import { Badge, IconButton } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import React from 'react';
+import { Badge, IconButton } from '@mui/material';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 function Notifications({ count }) {
   return (

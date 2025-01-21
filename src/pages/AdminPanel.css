@@ -58,13 +58,15 @@
 }
 
 /* width */
-.chat-detail__messages::-webkit-scrollbar, .chat-card-container::-webkit-scrollbar {
+.chat-detail__messages::-webkit-scrollbar,
+.chat-card-container::-webkit-scrollbar {
   width: 0.8rem;
   border-radius: 1rem;
 }
 
 /* Track */
-.chat-detail__messages::-webkit-scrollbar-track, .chat-card-container::-webkit-scrollbar-track {
+.chat-detail__messages::-webkit-scrollbar-track,
+.chat-card-container::-webkit-scrollbar-track {
   background: #323232;
   box-shadow: 0 5px 2px black inset;
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -72,7 +74,8 @@
 }
 
 /* Handle */
-.chat-detail__messages::-webkit-scrollbar-thumb, .chat-card-container::-webkit-scrollbar-thumb {
+.chat-detail__messages::-webkit-scrollbar-thumb,
+.chat-card-container::-webkit-scrollbar-thumb {
   background: rgb(80, 80, 80);
   box-shadow: 0 1px 1rem black;
   border-radius: 1rem;
@@ -81,7 +84,8 @@
 }
 
 /* Handle on hover */
-.chat-detail__messages::-webkit-scrollbar-thumb:hover, .chat-card-container::-webkit-scrollbar-thumb:hover {
+.chat-detail__messages::-webkit-scrollbar-thumb:hover,
+.chat-card-container::-webkit-scrollbar-thumb:hover {
   opacity: 1;
 }
 
@@ -109,14 +113,14 @@
 }
 
 @property --conicangle {
-  syntax: "<angle>";
+  syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
 }
 
 .chat-detail__message--bot::after,
 .chat-detail__message--bot::before {
-  content: "";
+  content: '';
   position: absolute;
   background: conic-gradient(
     from var(--conicangle),
@@ -202,15 +206,22 @@
   margin-top: 0;
 }
 
- .chat-detail__expand-btn {border: 1px solid red;
+.chat-detail__expand-btn {
+  border: 1px solid red;
   min-height: 2rem;
   border-radius: 1rem 0 1rem;
   margin-bottom: 1rem;
   font-size: 1rem;
   padding: 0.8rem 2rem;
   background-color: transparent;
-  color: white;}
-.chat-detail__expanded-response {border:1px solid #90f9b640; padding: 1rem; max-width: 98%; border-radius: 0.5rem;}
+  color: white;
+}
+.chat-detail__expanded-response {
+  border: 1px solid #90f9b640;
+  padding: 1rem;
+  max-width: 98%;
+  border-radius: 0.5rem;
+}
 
 .feedback-buttons {
   gap: 0.2rem;
@@ -340,14 +351,13 @@
   flex-direction: column;
   border: 1px solid #3d3d3d;
   border-radius: 1rem;
-  margin:1.5rem;
+  margin: 1.5rem;
   background-color: rgba(35, 35, 35, 0.241);
   box-shadow: -1px 8px 21px rgba(0, 0, 0, 0.38);
-
 }
 
 .sidebar-inner::after {
-  content: "";
+  content: '';
   display: flex;
   height: 3rem;
   background: linear-gradient(180deg, rgb(18, 18, 18, 0) 0%, #262626 100%);
@@ -372,8 +382,6 @@
   flex: 1 1 500px;
   scrollbar-color: rgb(112, 106, 93) rgb(6, 6, 6);
   padding: 2rem;
- 
-  
 }
 
 .sidebar-list {
@@ -400,7 +408,7 @@
 }
 
 .toggle-switch::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 20px;
   height: 20px;
