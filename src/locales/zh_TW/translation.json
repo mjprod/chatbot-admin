@@ -1,0 +1,9 @@
+{
+  "welcome": "歡迎",
+  "select_conversation_to_view": "選擇對話以查看詳細資訊。",
+  "conversation_with": "與…的對話 {{user}}",
+  "conversation_id": "對話編號：{{id}}",
+  "total": "總計：",
+  "last_reply": "最後回覆：",
+  "language": "語言："
+}

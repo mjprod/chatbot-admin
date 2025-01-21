@@ -1,0 +1,63 @@
+/* FeedbackAi ***/
+.feedbackai-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+  padding: 0.1rem 1rem;
+}
+
+.feedbackai-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  border: 2px dashed #ff000070;
+  padding: 1rem 0 2rem 1.5rem;
+  width: 80%;
+
+  border-radius: 0.6rem;
+}
+.feedbackai-text > textarea,
+input {
+  border: 1px solid #191814;
+  padding: 1rem 0.7rem;
+  width: 81%;
+  border-radius: 0.2rem;
+  box-shadow:
+    inset 0px 5px 9px #00000038,
+    0px 2px 2px #ffffff30;
+  background: #1b1b1b;
+  color: white;
+  font-size: 1rem;
+  line-height: 150%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.feedbackai-text > textarea::placeholder {
+  color: rgba(97, 97, 97, 0.804);
+}
+.feedbackai-text > textarea:focus-visible {
+  outline: 1px solid #ffdea8;
+}
+
+.confirm-button-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the right */
+}
+
+.confirm-button {
+  width: 30%;
+  height: 45px;
+  margin-right: 10%;
+  margin-top: 0.2rem;
+  border-radius: 6px;
+  clip-path: polygon(0 0, 100% 0%, 95% 100%, 5% 100%);
+  background: var(
+    --jokerColors-jokerGradients-jokerGradientGold02,
+    linear-gradient(314deg, #d6bc9e 12.4%, #ffeec0 50.91%, #d6bc9e 118.01%)
+  );
+  color: black;
+  font-size: 1rem;
+  margin-top: 2rem;
+}

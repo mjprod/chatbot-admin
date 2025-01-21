@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Rating from "./Rating.js";
-import "./Feedback.css";
-import ThankYouScreen from "./ThankYouScreen.js";
+import React, { useEffect, useState } from 'react';
+import Rating from './Rating.js';
+import './Feedback.css';
+import ThankYouScreen from './ThankYouScreen.js';
 //import useApiRequest from "../hook/useApiRequest.js";
 
 const Feedback = ({
@@ -18,7 +18,7 @@ const Feedback = ({
   const [isDisliked, setIsDisliked] = useState(false);
   const [rating, setRating] = useState(undefined);
   const [showConfirmButton, setShowConfirmButton] = useState(false);
-  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState('');
   const [showThankYou, setShowThankYou] = useState(false);
   //const { loading, saveFeedback } = useApiRequest();
 
@@ -41,7 +41,7 @@ const Feedback = ({
       setIsLiked(true); // Sets the "liked" state
       setIsDisliked(false);
       onLike(); // Calls the onLike function passed as a prop
-      setCorrectAnswer("");
+      setCorrectAnswer('');
     }
   };
 
@@ -55,19 +55,19 @@ const Feedback = ({
       onDislike();
       setRating(0);
       setShowConfirmButton(false);
-      setCorrectAnswer("");
+      setCorrectAnswer('');
     }
   };
 
   // Handles changes in the rating value
   const handleRatingChange = (newRating) => {
-    console.log("New Rating:", newRating); // Logs the new rating for debugging
+    console.log('New Rating:', newRating); // Logs the new rating for debugging
     setRating(newRating); // Updates the rating state
     if (newRating <= 3) {
       setShowConfirmButton(false);
     } else {
       setShowConfirmButton(true);
-      setCorrectAnswer("");
+      setCorrectAnswer('');
     }
   };
 
@@ -89,16 +89,16 @@ const Feedback = ({
       cleaned_prompt: aiAnswer.cleaned_prompt, // Processed question (if available)
       generation: aiAnswer.generation, // AI-generated answer text
       correct_bool: isLiked ? true : isDisliked ? false : null,
-      correct_answer: correctAnswer || "", // Only add if disliked
+      correct_answer: correctAnswer || '', // Only add if disliked
       chat_rating: rating,
       translations: [
-        { language: "en", text: aiAnswer.translations[0].text }, // English translation
-        { language: "ms-MY", text: aiAnswer.translations[1].text }, // Placeholder for Malay text
-        { language: "cn", text: aiAnswer.translations[2].text }, // Placeholder for Chinese text
+        { language: 'en', text: aiAnswer.translations[0].text }, // English translation
+        { language: 'ms-MY', text: aiAnswer.translations[1].text }, // Placeholder for Malay text
+        { language: 'cn', text: aiAnswer.translations[2].text }, // Placeholder for Chinese text
       ],
     };
 
-    console.log("Feedback Data:", feedbackData); // Log the feedback data
+    console.log('Feedback Data:', feedbackData); // Log the feedback data
 
     /*const result = await saveFeedback(feedbackData);
 
@@ -120,14 +120,14 @@ const Feedback = ({
         {/* Like button with conditional 'liked' class */}
         <button
           onClick={handleLike}
-          className={`thumb ${isLiked ? "liked" : ""}`}
+          className={`thumb ${isLiked ? 'liked' : ''}`}
         >
           👍
         </button>
         {/* Dislike button */}
         <button
           onClick={handleDislike}
-          className={`thumb ${isDisliked ? "disliked" : ""}`}
+          className={`thumb ${isDisliked ? 'disliked' : ''}`}
         >
           👎
         </button>
@@ -151,9 +151,9 @@ const Feedback = ({
             type="text"
             value={correctAnswer}
             onChange={(e) => handleRightAnswer(e.target.value)}
-            placeholder={"Add correct answer..."}
+            placeholder={'Add correct answer...'}
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
+              if (e.key === 'Enter') {
                 e.preventDefault();
                 handleSubmitServer();
               }

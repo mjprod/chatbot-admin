@@ -1,10 +1,10 @@
-const https = require("https");
-const fs = require("fs");
-const WebSocket = require("ws");
+const https = require('https');
+const fs = require('fs');
+const WebSocket = require('ws');
 
 // Paths to your SSL certificate and private key
-const SSL_CERT_PATH = "./certs/fullchain.pem"; // Replace with actual path to your certificate
-const SSL_KEY_PATH = "./certs/privkey.pem"; // Replace with actual path to your private key
+const SSL_CERT_PATH = './certs/fullchain.pem'; // Replace with actual path to your certificate
+const SSL_KEY_PATH = './certs/privkey.pem'; // Replace with actual path to your private key
 
 // Create an HTTPS server with SSL credentials
 const server = https.createServer({
@@ -25,38 +25,38 @@ const broadcastMessage = (message, senderSocket) => {
 };
 
 // Handle WebSocket connections
-wss.on("connection", (socket) => {
-  console.log("New client connected");
+wss.on('connection', (socket) => {
+  console.log('New client connected');
 
   // Handle messages from clients
-  socket.on("message", (data) => {
+  socket.on('message', (data) => {
     try {
       // Parse the received data as JSON
       const message = JSON.parse(data);
-      console.log("Received:", message);
+      console.log('Received:', message);
 
       // Broadcast the message to all other clients
       broadcastMessage(message, socket);
     } catch (error) {
-      console.error("Failed to parse message as JSON:", error);
+      console.error('Failed to parse message as JSON:', error);
 
       // Send an error response to the sender
       socket.send(
         JSON.stringify({
-          error: "Invalid message format. Expected JSON.",
+          error: 'Invalid message format. Expected JSON.',
         })
       );
     }
   });
 
   // Handle client disconnection
-  socket.on("close", () => {
-    console.log("Client disconnected");
+  socket.on('close', () => {
+    console.log('Client disconnected');
   });
 
   // Handle connection errors
-  socket.on("error", (error) => {
-    console.error("WebSocket error:", error);
+  socket.on('error', (error) => {
+    console.error('WebSocket error:', error);
   });
 });
 

@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import useWebSocket from "../hook/useWebSocket";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import useWebSocket from '../hook/useWebSocket';
+import { STATUS_PENDING } from '../utils/constants';
 
 const SocketContext = createContext();
 
@@ -9,19 +11,21 @@ export const useSocketContext = () => {
 
 export const SocketContextProvider = ({ children }) => {
   const { message, sendMessage } = useWebSocket(
-    "wss://api-staging.mjproapps.com:8081"
+    'wss://api-staging.mjproapps.com:8081'
   );
   const [receivedMessages, setReceivedMessages] = useState([]);
   const [conversations, setConversations] = useState([]);
+  
+  const { t } = useTranslation();
 
   // Monitoramento de mensagens recebidas via WebSocket
   // Process incoming WebSocket messages
   useEffect(() => {
     if (message) {
       const parsedMessage = JSON.parse(message);
-      const { conversationId, text, sender, user } = parsedMessage;
+      const { conversationId, text, sender, user ,timestamp , language} = parsedMessage;
 
-      if ("type" in parsedMessage) {
+      if ('type' in parsedMessage) {
         console.log(parsedMessage);
         const { id, status } = parsedMessage;
         setConversations((prevConversations) =>
@@ -50,18 +54,18 @@ export const SocketContextProvider = ({ children }) => {
             conv.id === conversationId
               ? {
                   ...conv,
-                  messages: [...conv.messages, { sender, text }],
+                  messages: [...conv.messages, { sender, text, timestamp,language }],
                 }
               : conv
           );
         } else {
           // Create a new conversation if it doesn't exist
           const newConversation = {
-            id: conversationId,
-            title: `Conversation with ${user}`,
-            status: "pending",
+            id: conversationId, 
+            title: t('conversation_with', { user: user.charAt(0).toUpperCase() }),
+            status: STATUS_PENDING,
             user: user,
-            messages: [{ sender, text }],
+            messages: [{ sender, text, timestamp ,language }],
           };
 
           return [...prevConversations, newConversation];

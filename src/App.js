@@ -1,7 +1,7 @@
-import React from "react";
-import AdminPanel from "./pages/AdminPanel";
-import { AuthContextProvider } from "./context/AuthContext";
-import { SocketContextProvider } from "./context/SocketContext";
+import React from 'react';
+import AdminPanel from './pages/AdminPanel';
+import { AuthContextProvider } from './context/AuthContext';
+import { SocketContextProvider } from './context/SocketContext';
 
 function App() {
   return (
