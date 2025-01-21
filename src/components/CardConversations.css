@@ -1,0 +1,193 @@
+/* General Card Styling */
+.conversation-card {
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: rgba(35, 35, 35, 0.9);
+  border: 1px solid rgba(148, 148, 148, 0.12);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+
+
+/* "HOLD ON" Active State */
+.card-active {
+  border-color: #6ecf67; /* Green border */
+  background-color: rgba(110, 207, 103, 0.15);
+}
+
+.card-onhold-danger {
+  border-color: #ff4d4d;
+  background-color: rgba(255, 77, 77, 0.2);
+  animation: glowing 3.5s infinite ease-in-out;
+}
+
+/* Delayed Reply - Red Alert */
+.card-danger {
+  border-color: #ff4d4d; /* Red */
+  background-color: rgba(255, 77, 77, 0.1);
+  animation: glowing 3.5s infinite ease-in-out; /* Glow effect */
+}
+
+/* Moderate Delay - Orange Alert */
+.card-warning {
+  border-color: #ffa500; /* Orange */
+  background-color: rgba(255, 165, 0, 0.1);
+}
+
+/* Default State */
+.card-normal {
+  border-color: rgba(148, 148, 148, 0.12);
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px 1.5px rgba(255, 77, 77, 0.4); /* Light red */
+  }
+  50% {
+    box-shadow: 0 0 10px 2.5px rgba(255, 0, 0, 0.6); /* Bright red */
+  }
+  100% {
+    box-shadow: 0 0 5px 1.5px rgba(255, 77, 77, 0.4); /* Light red */
+  }
+}
+
+/* Card Content */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-timestamp {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.card-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  background-color: #555;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+/* Actions Section */
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 1rem;
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: #6ecf67;
+}
+
+.toggle-switch .slider::before {
+  position: absolute;
+  content: '';
+  height: 0.8rem;
+  width: 0.8rem;
+  left: 0.2rem;
+  bottom: 0.1rem;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(1rem);
+}
+
+/* State Button */
+.state-button {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Active State Button */
+.state-active {
+  background-color: #6ecf67; /* Green */
+  color: #000;
+}
+
+/* Button Matches Card Type */
+.state-button.card-danger {
+  background-color: #ff4d4d; /* Red */
+}
+
+.state-button.card-warning {
+  background-color: #ffa500; /* Orange */
+}
+
+.state-button.card-normal {
+  background-color: #666; /* Default gray */
+}
+
+
+.last-reply-normal {
+  color: #ccc;
+}
+.last-reply-warning {
+  color: #ffa500; 
+}
+.last-reply-danger {
+  color: #ff4d4d;
+}
+.last-reply-active {
+  color: #6ecf67;
+}

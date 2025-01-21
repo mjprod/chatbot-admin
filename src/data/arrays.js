@@ -21,7 +21,7 @@ export const conversation1 =
           {
             sender: "user",
             text: "Hai, saya perlukan bantuan dengan akaun saya.",
-            timestamp: "2025-01-21T00:27:15.000Z",
+            timestamp: "2025-01-21T00:00:00.000Z",
           },
         ],
       };
