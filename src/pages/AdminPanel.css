@@ -67,7 +67,6 @@
 /* Track */
 .chat-detail__messages::-webkit-scrollbar-track,
 .chat-card-container::-webkit-scrollbar-track {
-  background: #323232;
   box-shadow: 0 5px 2px black inset;
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 1rem;

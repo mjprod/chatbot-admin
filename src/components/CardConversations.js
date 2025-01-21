@@ -33,7 +33,8 @@ const CardConversations = ({
     : "card-normal";
 
   return (
-    <li
+  <div className={`overlay-card ${isHoldOn}`}>
+<li
       className={`conversation-card ${cardTypeClass}`}
       onClick={() => onSelectConversation(conversation.id)}
     >
@@ -88,6 +89,8 @@ const CardConversations = ({
         </div>
       </div>
     </li>
+  </div>
+    
   );
 };
 
