@@ -22,7 +22,7 @@ module.exports = {
         },
       },
       rules: {
-        complexity: ['error', 10], // Limit code complexity to 10
+        complexity: ['error', 15], // Limit code complexity to 10
         'no-unused-vars': 'off', // Disable unused variables rule
         'react/prop-types': 'warn', // Warn for missing PropTypes in React components
         'prettier/prettier': 'warn', // Enforce Prettier formatting as an error

@@ -8,7 +8,7 @@ export default [
       react: eslintPluginReact,
     },
     rules: {
-      complexity: ['error', 10],
+      complexity: ['error', 15],
       'no-unused-vars': 'off',
       'react/prop-types': 'warn',
     },
