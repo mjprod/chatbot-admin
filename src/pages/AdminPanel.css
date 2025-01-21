@@ -362,8 +362,8 @@
   height: 3rem;
   background: linear-gradient(180deg, rgb(18, 18, 18, 0) 0%, #262626 100%);
   transform: translateY(-100%);
+  pointer-events: none; /* Allow clicks to pass through */
 }
-
 .sidebar-title {
   padding: 1rem;
   border-bottom: 1px solid #333;

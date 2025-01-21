@@ -1,0 +1,101 @@
+/* Container styles */
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333; /* Dark background */
+  color: #fff; /* White text */
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Title styles */
+.header-title {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Controls container styles */
+.header-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Search container styles */
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.search-input {
+  border: none;
+  padding: 10px;
+  outline: none;
+  background-color: #444;
+  color: #fff;
+  border-radius: 20px 0 0 20px;
+}
+
+.search-button {
+  border: none;
+  background-color: #444;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 0 20px 20px 0;
+}
+
+/* Sort container styles */
+.sort-container {
+  position: relative;
+}
+
+.sort-button {
+  border: 1px solid #aaa;
+  background-color: #444;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.arrow {
+  margin-left: 5px;
+}
+
+/* Dropdown menu styles */
+.sort-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.sort-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.sort-dropdown li {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sort-dropdown li:hover {
+  background-color: #555;
+}

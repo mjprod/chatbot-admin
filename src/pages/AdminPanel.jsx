@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ChatDetail from '../components/ChatDetail';
-import FiltersConversation from '../components/FiltersConversation';
 import Sidebar from '../components/Sidebar';
 import { useSocketContext } from '../context/SocketContext';
+import { conversation1, conversation2, conversation3, conversation4, conversation5, conversation6 } from '../data/arrays';
 import './AdminPanel.css';
 
 function AdminPanel() {
@@ -26,27 +26,15 @@ function AdminPanel() {
 
   //TESTER
   useEffect(() => {
-    const conversation = 
-      {
-        id: "85fd05b1-04e2-43cc-a8e5-bcbb6c2c790d",
-        title: "Conversation with glauco",
-        status: "pending",
-        user: "glauco",
-        messages: [
-          {
-            sender: "bot",
-            text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
-            timestamp: "2025-01-21T00:25:00.000Z",
-          },
-          {
-            sender: "user",
-            text: "Hai, saya perlukan bantuan dengan akaun saya.",
-            timestamp: "2025-01-21T00:27:15.000Z",
-          },
-        ],
-      };
     
-    setConversations((prev) => [...prev, conversation]);
+    setConversations((prev) => [...prev, conversation1]);
+    setConversations((prev) => [...prev, conversation2]);
+    setConversations((prev) => [...prev, conversation3]);
+    setConversations((prev) => [...prev, conversation4]);
+    setConversations((prev) => [...prev, conversation5]);
+    setConversations((prev) => [...prev, conversation6]);
+
+    
   }, [setConversations]);
 
   useEffect(() => {
@@ -115,10 +103,10 @@ function AdminPanel() {
         </div>
         {/* Sidebar */}
         <div className="sidebar">
-          <FiltersConversation
+          {/*<FiltersConversation
             filters={filters}
             onLanguageSelect={handleLanguageSelect}
-          />
+          />*/}
           <Sidebar onSelectConversation={handleSelectConversation} />
         </div>
         <ToastContainer position="top-right" autoClose={5000} />
