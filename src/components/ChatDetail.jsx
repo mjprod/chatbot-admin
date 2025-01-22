@@ -8,6 +8,10 @@ import Feedback from './Feedback.jsx';
 import FeedbackAI from './FeedbackAi.jsx';
 import { ReactComponent as SendSvg } from '../assets/iconSend.svg';
 import { ReactComponent as AttachSvg } from '../assets/iconAttachment.svg';
+import { ReactComponent as IconThreeDots } from '../assets/IconThreeDots.svg';
+import { ReactComponent as AddtoMessage } from '../assets/IconAddtoMessage.svg';
+import { ReactComponent as IconThumbsDown } from '../assets/IconThumbsDown.svg';
+import { ReactComponent as IconAutoSend } from '../assets/IconAutoSend.svg';
 
 const ChatDetail = ({ conversationId, onSendMessage }) => {
   const [message, setMessage] = useState('');
@@ -156,16 +160,20 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
                 <div className="fade-div fade-in">
                   <div className="bottom-bar">
                     <div className="left-buttons">
-                      <button className="bottom-bar-button">Button 1</button>
-                      <button
-                        className="bottom-bar-button"
-                        onClick={() => toggleDivVisibility(index)}
-                      >
-                        Button 2
-                      </button>
+                      <IconThreeDots className="icon-threedots" />
+                      <div className="left-button-options">
+                        <button className="bottom-bar-button">
+                          <AddtoMessage className="icon-addtomessage" /></button>
+                          <div className="seperator-line">.</div>
+                        <button
+                          className="bottom-bar-button"
+                          onClick={() => toggleDivVisibility(index)}
+                        >
+                          <IconThumbsDown className="icon-thumbsdown" />
+                        </button></div>
                     </div>
                     <div className="right-buttons">
-                      <button className="bottom-bar-button">Button 3</button>
+                      <button className="bottom-bar-button"><IconAutoSend className="icon-auto-send" /></button>
                     </div>
                   </div>
                 </div>
@@ -189,13 +197,13 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Write a message..."
           />
-         <div className="chatinputbutton-container">
-          <button className="chat-detail__button_attachment" onClick={handleSend}>
-            <span className="button-chev"><AttachSvg className="icon-attachsvg" /> </span>
-          </button>
-          <button className="chat-detail__button" onClick={handleSend}>
-            <span className="button-chev"><SendSvg className="icon-sendsvg" />  </span>
-          </button>
+          <div className="chatinputbutton-container">
+            <button className="chat-detail__button_attachment" onClick={handleSend}>
+              <span className="button-chev"><AttachSvg className="icon-attachsvg" /> </span>
+            </button>
+            <button className="chat-detail__button" onClick={handleSend}>
+              <span className="button-chev"><SendSvg className="icon-sendsvg" />  </span>
+            </button>
           </div>
         </div>
       )}

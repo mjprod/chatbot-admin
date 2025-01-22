@@ -22,7 +22,10 @@ const ChatHeader = ({
     <div className="chat-header">
       <div className="user-info">
         <div className="user-avatar">{conversation.user[0].toUpperCase()}</div>
+        <div className="user-name-container">
         <div className="user-name">{conversation.user.charAt(0).toUpperCase() + conversation.user.slice(1)}
+      </div>
+      <div className="conversation-id">{t('conversation_id', { id: conversation.id })}</div>
       </div>
     </div>
       <div className="conversation-details">

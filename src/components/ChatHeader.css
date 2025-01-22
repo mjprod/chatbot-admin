@@ -27,9 +27,10 @@
   margin-right: 10px;
 }
 
+.user-name-container {display: flex; flex-direction: column;}
 .user-name {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  
 }
 
 .conversation-details {

@@ -1,6 +1,6 @@
 .admin-panel {
   display: grid;
-  grid-template-columns: 1fr 30%;
+  grid-template-columns: 1fr minmax(340px, auto);
   grid-template-rows: 1fr;
   height: auto;
   overflow: hidden;
