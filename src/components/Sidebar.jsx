@@ -20,8 +20,8 @@ function Sidebar({ onSelectConversation }) {
   const filteredConversations = useMemo(() => {
     const filtered = conversations.filter((conversation) => {
       const textMatch =
-        conversation.id.toLowerCase().includes(filterText.toLowerCase()) ||
-        conversation.user.toLowerCase().includes(filterText.toLowerCase());
+        conversation.id?.toLowerCase().includes(filterText.toLowerCase()) ||
+        conversation.user?.toLowerCase().includes(filterText.toLowerCase());
 
       const statusMatch = conversation.status
         .toLowerCase()

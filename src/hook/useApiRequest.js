@@ -50,13 +50,13 @@ const useApiRequest = () => {
 
 
   // Function to send feedback to the API
-  const saveFeedback = async (feedback,language) => {
+  const saveFeedback = async (feedback, language) => {
 
     if (typeof language !== "string" || !language) {
       console.error("Invalid language value:", language);
       return;
     }
-  
+
     const config = {
       url: server + `api/capture_feedback_multi/?language=${language}`,
       method: "POST",
