@@ -20,11 +20,11 @@ export const calculateTimeDifferences = (messages) => {
   const totalTime = now - firstTimestamp;
   const lastTime = now - lastTimestamp;
   const formattedTimestamps = formatTimeToDDMMYY(lastTimestamp);
-  
+
 
   return {
     totalTime: formatTimeToHHMM(totalTime),
-    lastTime: formatTimeToHHMM(lastTime ),
+    lastTime: formatTimeToHHMM(lastTime),
     formatted: (formattedTimestamps)
   };
 };
@@ -60,4 +60,17 @@ const formatTimeToDDMMYY = (milliseconds) => {
 export const timeToMinutes = (time) => {
   const [hours, minutes] = time.split(":").map(Number);
   return hours * 60 + minutes;
+};
+
+export const timeToMinutesDifference = (lastTime) => {
+  const now = new Date();
+  const [lastHours, lastMinutes] = lastTime.split(":").map(Number);
+  const lastDate = new Date(now);
+  lastDate.setHours(lastHours, lastMinutes, 0, 0);
+  let difference = now - lastDate;
+  if (difference < 0) {
+    difference += 24 * 60 * 60 * 1000;
+  }
+  const minutesDifference = Math.floor(difference / (1000 * 60));
+  return minutesDifference;
 };
