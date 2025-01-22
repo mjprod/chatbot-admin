@@ -125,5 +125,15 @@ export const conversation6 =
       text: "Hai, saya perlukan bantuan dengan akaun saya.",
       timestamp: "2025-01-21T00:00:15.000Z",
     },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-21T00:00:15.000Z",
+    },
   ],
 };

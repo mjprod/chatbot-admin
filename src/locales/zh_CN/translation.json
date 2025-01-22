@@ -3,6 +3,7 @@
   "select_conversation_to_view": "选择对话以查看详情。",
   "conversation_with": "与…的对话 {{user}}",
   "conversation_id": "会话编号：{{id}}",
+  "conversation_on_hold_first": "请先将对话暂停。",
   "total": "总计：",
   "last_reply": "最后回复：",
   "language": "语言："

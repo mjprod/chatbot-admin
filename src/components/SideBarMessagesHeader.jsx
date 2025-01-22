@@ -23,7 +23,7 @@ const SideBarMessagesHeader = ({
     } else {
       setSortHold(false);
     }
-    setSortOrder(option.toLowerCase());
+    setSortOrder(option ? option.toLowerCase() : 'newest');
   };
 
   const handleInputChange = (e) => {
@@ -36,7 +36,7 @@ const SideBarMessagesHeader = ({
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleSearch(); // Trigger search on Enter key
+      handleSearch();
     }
   };
 

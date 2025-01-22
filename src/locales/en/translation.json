@@ -3,6 +3,7 @@
   "select_conversation_to_view": "Select a conversation to view details.\n\nPilih perbualan untuk melihat butiran.\n\n選擇一個對話以查看詳細信息。\n\n选择一个对话以查看详细信息。",
   "conversation_with": "Conversation with {{user}}",
   "conversation_id": "Conversation ID: {{id}}",
+  "conversation_on_hold_first": "Please put the conversation on hold first.",
   "total": "Total:",
   "last_reply": "Last Reply: ",
   "language": "Language: "
