@@ -55,7 +55,7 @@ function AdminPanel() {
 
     const updatedMessages = [
       ...conversation.messages,
-      { sender: 'admin', text: message },
+      { sender: 'admin', text: message, timestamp: new Date().toISOString() },
     ];
 
     // Update locally

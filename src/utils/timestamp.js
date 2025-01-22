@@ -8,6 +8,14 @@ export const generateTimestamp = () => {
   return `${date}T${time}${microseconds}`;
 };
 
+
+export const formatStringTimeToHHMM = (timestamp) => {
+  const date = new Date(timestamp);
+  const hours = String(date.getUTCHours()).padStart(2, "0");
+  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+};
+
 export const calculateTimeDifferences = (messages) => {
   if (!messages.length) return { totalTime: null, lastTime: null };
 

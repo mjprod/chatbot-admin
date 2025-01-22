@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSocketContext } from '../context/SocketContext';
-import { generateTimestamp } from '../utils/timestamp.js';
+import {
+  formatStringTimeToHHMM,
+  generateTimestamp,
+} from '../utils/timestamp.js';
 import './ChatDetail.css';
 import ChatHeader from './ChatHeader.jsx';
 import FeedbackAI from './FeedbackAi.jsx';
@@ -10,13 +13,12 @@ import FeedbackAI from './FeedbackAi.jsx';
 import { ReactComponent as IconAddtoMessage } from '../assets/IconAddtoMessage.svg';
 import { ReactComponent as IconAutoSend } from '../assets/IconAutoSend.svg';
 import { ReactComponent as IconThumbsDown } from '../assets/IconThumbsDown.svg';
+import { SENDER_ADMIN, SENDER_BOT, SENDER_USER } from '../utils/constants';
 
 const ChatDetail = ({ conversationId, onSendMessage }) => {
   const { t } = useTranslation();
 
   const [managerMessage, setManagerMessage] = useState('');
-  const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
-
   const { sendMessage, conversations } = useSocketContext();
 
   const conversation = conversations.find((conv) => conv.id === conversationId);
@@ -33,12 +35,11 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
       sendMessage(
         JSON.stringify({
           text: managerMessage || text,
-          sender: 'admin',
+          sender: SENDER_ADMIN,
           admin_id: '55',
           conversationID: conversation.id,
-          user: 'admin',
+          user: SENDER_ADMIN,
           timestamp: generateTimestamp(),
-          show_chat: text ? true : false,
         })
       );
 
@@ -49,13 +50,13 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
 
   const getIcon = (sender) => {
     switch (sender) {
-      case 'bot':
+      case SENDER_BOT:
         return '🤖';
       case 'bot_on_hold':
         return '⏳';
-      case 'user':
+      case SENDER_USER:
         return '👤';
-      case 'admin':
+      case SENDER_ADMIN:
         return '👨‍💻';
       default:
         return '❓';
@@ -69,10 +70,6 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
       </div>
     );
   }
-
-  const handleToggleExpand = (index) => {
-    setExpandedMessageIndex(expandedMessageIndex === index ? null : index);
-  };
 
   const toggleDivVisibility = (index) => {
     setVisibleDivs((prevState) => ({
@@ -91,6 +88,11 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
   const sendToUser = (text) => {
     handleSend(text);
   };
+
+  const formatSentTime = (timestamp) => {
+    return formatStringTimeToHHMM(timestamp);
+  };
+
   return (
     <div className='chat-detail-container'>
       <ChatHeader conversation={conversation} />
@@ -98,6 +100,9 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
         {conversation.messages.map((msg, index) => {
           return (
             <div key={msg.timestamp} className='chat-container'>
+              <span className={`text-sent text-sent-${msg.sender}`}>
+                {formatSentTime(msg.timestamp)}
+              </span>
               {msg.text && (
                 <div
                   key={index}
