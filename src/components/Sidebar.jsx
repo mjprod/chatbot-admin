@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSocketContext } from '../context/SocketContext';
 import { generateTimestamp } from '../utils/timestamp.js';
 import CardConversations from './CardConversations';
@@ -9,30 +9,67 @@ import SidebarPagination from './SidebarPagination';
 function Sidebar({ onSelectConversation }) {
   const { sendMessage, setConversations, conversations } = useSocketContext();
 
-  const [filterText, setFilterText] = useState(''); // For search
-  const [filterStatus, setFilterStatus] = useState(''); // For status filtering
-  const [currentPage, setCurrentPage] = useState(1); // For pagination
+  const [filterText, setFilterText] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
+  const [sortOrder, setSortOrder] = useState('newest');
+  const [sortOrderHold, setSortHold] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(conversations.length / itemsPerPage);
 
-  // Filter conversations based on text and status
-  const filteredConversations = conversations.filter((conversation) => {
-    const matchesText = conversation.title
-      .toLowerCase()
-      .includes(filterText.toLowerCase());
-    const matchesStatus = filterStatus
-      ? conversation.status === filterStatus
-      : true;
-    return matchesText && matchesStatus;
-  });
+  const filteredConversations = useMemo(() => {
+    const filtered = conversations.filter((conversation) => {
+      const textMatch =
+        conversation.id.toLowerCase().includes(filterText.toLowerCase()) ||
+        conversation.user.toLowerCase().includes(filterText.toLowerCase());
 
-  // Calculate paginated conversations
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedConversations = filteredConversations.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+      const statusMatch = conversation.status
+        .toLowerCase()
+        .includes(filterStatus.toLowerCase());
+
+      return textMatch && statusMatch;
+    });
+
+    const sorted = filtered
+      .map((conversation) => {
+        const lastMessage = conversation.messages.reduce((latest, message) => {
+          return new Date(message.timestamp) > new Date(latest.timestamp)
+            ? message
+            : latest;
+        }, conversation.messages[0]);
+
+        return {
+          ...conversation,
+          lastMessage,
+        };
+      })
+      .sort((a, b) => {
+        if (sortOrderHold) {
+          // Prioritize "HOLD ON" status
+          if (a.status === 'HOLD ON' && b.status !== 'HOLD ON') return -1;
+          if (b.status === 'HOLD ON' && a.status !== 'HOLD ON') return 1;
+        }
+
+        // Then sort by timestamp of last message
+        const dateA = new Date(a.lastMessage?.timestamp || 0);
+        const dateB = new Date(b.lastMessage?.timestamp || 0);
+        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+      });
+
+    return sorted;
+  }, [conversations, filterText, filterStatus, sortOrder]);
+
+  const totalPages = useMemo(() => {
+    return Math.ceil(filteredConversations.length / itemsPerPage);
+  }, [filteredConversations]);
+
+  const paginatedConversations = useMemo(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages || 1);
+    }
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return filteredConversations.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredConversations, currentPage, totalPages]);
 
   const handleToggleConversation = (id) => {
     setConversations((prevConversations) => {
@@ -58,7 +95,7 @@ function Sidebar({ onSelectConversation }) {
         })
       );
 
-      sendMessage(
+      /*sendMessage(
         JSON.stringify({
           text:
             updatedConversation.status === 'HOLD ON'
@@ -70,23 +107,36 @@ function Sidebar({ onSelectConversation }) {
           admin_id: '55',
           timestamp: generateTimestamp(),
         })
-      );
+      );*/
 
       return updatedConversations;
     });
   };
 
   return (
-    <div className="sidebar-inner">
-      <SideBarMessagesHeader />
-      <ul className="chat-card-container">
-        {paginatedConversations.map((conversation,index) => (
-          <CardConversations key={index} conversation={conversation}  
+    <div className='sidebar-inner'>
+      <SideBarMessagesHeader
+        setSortOrder={setSortOrder}
+        setSortHold={setSortHold}
+        setFilterText={setFilterText}
+      />
+      <ul className='chat-card-container'>
+        {paginatedConversations.map((conversation) => (
+          <CardConversations
+            key={conversation.id}
+            conversation={conversation}
             onSelectConversation={() => onSelectConversation(conversation.id)}
-            handleToggleConversation={() => handleToggleConversation(conversation.id)}/>
-          ))}
+            handleToggleConversation={() =>
+              handleToggleConversation(conversation.id)
+            }
+          />
+        ))}
       </ul>
-      <SidebarPagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+      <SidebarPagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 }

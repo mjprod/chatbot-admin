@@ -5,7 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import ChatDetail from '../components/ChatDetail';
 import Sidebar from '../components/Sidebar';
 import { useSocketContext } from '../context/SocketContext';
-import { conversation1 } from '../data/arrays';
+import {
+  conversation1,
+  conversation2,
+  conversation3,
+  conversation4,
+  conversation5,
+  conversation6,
+} from '../data/arrays';
 import './AdminPanel.css';
 
 function AdminPanel() {
@@ -27,11 +34,11 @@ function AdminPanel() {
   //TESTER
   useEffect(() => {
     setConversations((prev) => [...prev, conversation1]);
-    //setConversations((prev) => [...prev, conversation2]);
-    //setConversations((prev) => [...prev, conversation3]);
-    // setConversations((prev) => [...prev, conversation4]);
-    //setConversations((prev) => [...prev, conversation5]);
-    //setConversations((prev) => [...prev, conversation6]);
+    setConversations((prev) => [...prev, conversation2]);
+    setConversations((prev) => [...prev, conversation3]);
+    setConversations((prev) => [...prev, conversation4]);
+    setConversations((prev) => [...prev, conversation5]);
+    setConversations((prev) => [...prev, conversation6]);
   }, [setConversations]);
 
   useEffect(() => {
@@ -100,10 +107,6 @@ function AdminPanel() {
         </div>
         {/* Sidebar */}
         <div className='sidebar'>
-          {/*<FiltersConversation
-            filters={filters}
-            onLanguageSelect={handleLanguageSelect}
-          />*/}
           <Sidebar onSelectConversation={handleSelectConversation} />
         </div>
         <ToastContainer position='top-right' autoClose={5000} />
