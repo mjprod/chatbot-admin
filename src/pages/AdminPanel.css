@@ -31,6 +31,10 @@
 .no-chat { width: 27vw;
   margin: 0 auto;}
 
+.chat-detail__empty h6 {
+  white-space: pre-wrap;
+}
+
 .chat-detail {
   height: 100lvh;
 }

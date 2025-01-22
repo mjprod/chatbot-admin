@@ -30,7 +30,7 @@ function AdminPanel() {
     setConversations((prev) => [...prev, conversation1]);
     //setConversations((prev) => [...prev, conversation2]);
     //setConversations((prev) => [...prev, conversation3]);
-    // setConversations((prev) => [...prev, conversation4]);
+    //setConversations((prev) => [...prev, conversation4]);
     //setConversations((prev) => [...prev, conversation5]);
     //setConversations((prev) => [...prev, conversation6]);
   }, [setConversations]);
@@ -56,7 +56,7 @@ function AdminPanel() {
 
     const updatedMessages = [
       ...conversation.messages,
-      { sender: 'admin', text: message },
+      { sender: 'admin', text: message, timestamp: new Date().toISOString() },
     ];
 
     // Update locally
@@ -87,7 +87,6 @@ function AdminPanel() {
           <div className='chat-detail'>
             {selectedConversationId ? (
               <ChatDetail
-                key={String(selectedConversationId)}
                 conversationId={selectedConversationId}
                 onSendMessage={handleSendMessage}
               />
@@ -102,10 +101,6 @@ function AdminPanel() {
         </div>
         {/* Sidebar */}
         <div className='sidebar'>
-          {/*<FiltersConversation
-            filters={filters}
-            onLanguageSelect={handleLanguageSelect}
-          />*/}
           <Sidebar onSelectConversation={handleSelectConversation} />
         </div>
         <ToastContainer position='top-right' autoClose={5000} />

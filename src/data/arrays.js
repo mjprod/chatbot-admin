@@ -23,6 +23,16 @@ export const conversation1 =
       text: "Hai, saya perlukan bantuan dengan akaun saya.",
       timestamp: "2025-01-21T23:29:35.269Z",
     },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-21T23:29:35.269Z",
+    },
   ],
 };
 
@@ -42,7 +52,17 @@ export const conversation2 =
     {
       sender: "user",
       text: "Hai, saya perlukan bantuan dengan akaun saya.",
-      timestamp: "2025-01-21T00:27:15.000Z",
+      timestamp: "2025-01-21T00:12:15.000Z",
+    },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-21T00:12:15.000Z",
     },
   ],
 };
@@ -63,7 +83,17 @@ export const conversation3 =
     {
       sender: "user",
       text: "Hai, saya perlukan bantuan dengan akaun saya.",
-      timestamp: "2025-01-21T00:27:15.000Z",
+      timestamp: "2025-01-21T00:24:05.000Z",
+    },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-21T00:24:05.000Z",
     },
   ],
 };
@@ -83,7 +113,17 @@ export const conversation4 =
     {
       sender: "user",
       text: "Hai, saya perlukan bantuan dengan akaun saya.",
-      timestamp: "2025-01-21T00:27:15.000Z",
+      timestamp: "2025-01-22T00:20:15.000Z",
+    },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-22T00:20:15.000Z",
     },
   ],
 };
@@ -103,7 +143,17 @@ export const conversation5 =
     {
       sender: "user",
       text: "Hai, saya perlukan bantuan dengan akaun saya.",
-      timestamp: "2025-01-21T00:27:15.000Z",
+      timestamp: "2025-01-21T00:10:15.000Z",
+    },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-21T00:10:15.000Z",
     },
   ],
 };
@@ -123,7 +173,27 @@ export const conversation6 =
     {
       sender: "user",
       text: "Hai, saya perlukan bantuan dengan akaun saya.",
-      timestamp: "2025-01-21T00:27:15.000Z",
+      timestamp: "2025-01-21T00:00:15.000Z",
+    },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-21T00:00:15.000Z",
+    },
+    {
+      sender: "bot",
+      text: "Hai LuckyPlayer88, bagaimana saya boleh membantu anda?",
+      timestamp: "2025-01-21T00:25:00.000Z",
+    },
+    {
+      sender: "user",
+      text: "Hai, saya perlukan bantuan dengan akaun saya.",
+      timestamp: "2025-01-21T00:00:15.000Z",
     },
   ],
 };

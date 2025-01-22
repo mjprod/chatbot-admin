@@ -3,7 +3,8 @@
   "select_conversation_to_view": "Pilih perbualan untuk melihat butiran.",
   "conversation_with": "Perbualan dengan {{user}}",
   "conversation_id": "ID Perbualan: {{id}}",
-    "total": "Jumlah:",
-    "last_reply": "Balasan Terakhir: ",
-    "language": "Bahasa: "
+  "conversation_on_hold_first": "Sila tahan perbualan terlebih dahulu.",
+  "total": "Jumlah:",
+  "last_reply": "Balasan Terakhir: ",
+  "language": "Bahasa: "
 }
