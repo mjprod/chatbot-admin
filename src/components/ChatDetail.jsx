@@ -13,6 +13,7 @@ import { ReactComponent as AddtoMessage } from '../assets/IconAddtoMessage.svg';
 import { ReactComponent as IconThumbsDown } from '../assets/IconThumbsDown.svg';
 import { ReactComponent as IconAutoSend } from '../assets/IconAutoSend.svg';
 
+
 const ChatDetail = ({ conversationId, onSendMessage }) => {
   const [message, setMessage] = useState('');
   const [expandedMessageIndex, setExpandedMessageIndex] = useState(null);
@@ -63,6 +64,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
   if (!conversation) {
     return (
       <div className="chat-detail__empty">
+
         <h6>Select a conversation to view details.</h6>
       </div>
     );

@@ -19,10 +19,12 @@
 .card-active {
   border-color: #6ecf67; /* Green border */
   background-color: #2B2B2B;
+  border-width: 2px;
 }
 
 .card-onhold-danger {
   border-color: #6ecf67;
+  border-width: 2px;
  
 }
 
@@ -42,7 +44,7 @@
 /* Default State */
 .card-normal {
   border-color: rgba(95, 95, 95, 0.40);
-  background-color: rgba(110, 207, 103, 0.15);
+  background-color: rgba(61, 61, 61, 0.4);
 }
 
 

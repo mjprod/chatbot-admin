@@ -1,5 +1,9 @@
 import { useState } from "react";
 import "./SideBarMessagesHeader.css"; // Import the CSS file
+import { ReactComponent as IconSearch} from '../assets/iconSearch.svg';
+import { ReactComponent as IconDownChevron} from '../assets/iconChevronRight.svg';
+import { ReactComponent as IconSort} from '../assets/iconSort.svg';
+
 
 const SideBarMessagesHeader = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -26,13 +30,13 @@ const SideBarMessagesHeader = () => {
           />
           <button className="search-button">
             <span role="img" aria-label="search">
-              🔍
+              <IconSearch className="icon-search" />
             </span>
           </button>
         </div>
         <div className="sort-container">
           <button className="sort-button" onClick={toggleDropdown}>
-            {selectedOption} <span className="arrow">▼</span>
+           <IconSort/> {selectedOption} <span><IconDownChevron className="icon-arrow" /></span>
           </button>
           {showDropdown && (
             <div className="sort-dropdown">

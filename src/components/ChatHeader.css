@@ -33,6 +33,9 @@
   
 }
 
+.icon-total-time, .icon-globe-language {transform: translateY(4.2px); margin-right: 0.2rem;}
+.icon-search {scale: 1.2;}
+
 .conversation-details {
   text-align: right;
 }
