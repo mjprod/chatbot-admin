@@ -46,6 +46,7 @@ const useWebSocket = (url) => {
   const sendMessage = (msg) => {
     console.log(`Received message Admin: ${msg}`);
     if (socket && socket.readyState === WebSocket.OPEN) {
+      console.log(msg);
       socket.send(msg);
     }
   };

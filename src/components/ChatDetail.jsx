@@ -42,6 +42,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
           admin_id: '55',
           conversationID: conversation.id,
           user: SENDER_ADMIN,
+          status: conversation.status,
           timestamp: generateTimestamp(),
         })
       );
@@ -81,7 +82,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
     }));
   };
 
-  const copyTextToReview = (index, text) => {
+  const copyTextToReview = (text) => {
     if (conversation.status === 'HOLD ON') {
       setManagerMessage(text);
     } else {

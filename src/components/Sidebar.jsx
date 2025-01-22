@@ -95,7 +95,7 @@ function Sidebar({ onSelectConversation }) {
         })
       );
 
-      /*sendMessage(
+      sendMessage(
         JSON.stringify({
           text:
             updatedConversation.status === 'HOLD ON'
@@ -107,7 +107,7 @@ function Sidebar({ onSelectConversation }) {
           admin_id: '55',
           timestamp: generateTimestamp(),
         })
-      );*/
+      );
 
       return updatedConversations;
     });
