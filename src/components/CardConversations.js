@@ -73,6 +73,7 @@ const CardConversations = ({
             <div className="avatar">{conversation.user.charAt(0).toUpperCase()}</div>
             <div className="user-name">{conversation.user.charAt(0).toUpperCase() + conversation.user.slice(1)}</div>
           </div>
+        <div className="horizontal-separator"><hr/></div>
 
           {/* Actions */}
           <div className="card-actions">

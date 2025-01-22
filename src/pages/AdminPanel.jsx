@@ -6,6 +6,7 @@ import ChatDetail from '../components/ChatDetail';
 import Sidebar from '../components/Sidebar';
 import { useSocketContext } from '../context/SocketContext';
 import { conversation1 } from '../data/arrays';
+import { ReactComponent as NoChat } from '../assets/nochat.svg';
 import './AdminPanel.css';
 
 function AdminPanel() {
@@ -91,6 +92,7 @@ function AdminPanel() {
               />
             ) : (
               <div className='chat-detail__empty'>
+                  <NoChat className="no-chat" />
                 <h6>{t('select_conversation_to_view')}</h6>
               </div>
             )}

@@ -12,19 +12,43 @@
 /* Left buttons group */
 .left-buttons {
   display: flex;
-  margin-left: 5%;
-  gap: 0px;
+  margin-left: 5.2vw;
+
+  height: 2.625rem;
+  padding: 0 0.9375rem;
+  align-items: center;
+  
+
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  border-right: 1px solid var(--jokerColors-jokerBlack-jokerBlack200, #3d3d3d);
+  border-bottom: 1px solid var(--jokerColors-jokerBlack-jokerBlack200, #3d3d3d);
+  border-left: 1px solid var(--jokerColors-jokerBlack-jokerBlack200, #3d3d3d);
+  background: var(--jokerColors-jokerBlack-jokerBlack300, #262626);
+  box-shadow: 0px 7px 6px 0px rgba(0, 0, 0, 0.3) inset;
 }
 
 /* Right buttons group */
 .right-buttons {
   display: flex;
+  width: 4.375rem;
+  height: 2.625rem;
+  padding: 0 0.9375rem;
+  margin-right: 1%;
+  justify-content: center;
+  align-items: center;
+  gap: 1.0625rem;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+border-right: 1px solid var(--jokerColors-jokerBlack-jokerBlack200, #3D3D3D);
+border-bottom: 1px solid var(--jokerColors-jokerBlack-jokerBlack200, #3D3D3D);
+border-left: 1px solid var(--jokerColors-jokerBlack-jokerBlack200, #3D3D3D);
+background: var(--jokerColors-jokerBlack-jokerBlack300, #262626);
+box-shadow: 0px 7px 6px 0px rgba(0, 0, 0, 0.30) inset;
 }
 
 /* Button style */
 .bottom-bar-button {
-  background-color: #444;
-  color: #fff;
+  background-color: transparent;
+  
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -32,23 +56,82 @@
   transition: background-color 0.3s;
 }
 
-.bottom-bar-button:hover {
-  background-color: #555;
+.left-button-options {
+  display: flex;
+  gap: 1rem;
 }
+
+.bottom-bar-button .icon-addtomessage {transition: all 0.1s ease-in-out;}
+
+.bottom-bar-button .icon-addtomessage:hover {
+  animation: bounce 1.5s infinite;
+}
+
+.bottom-bar-button .icon-thumbsdown {transition: all 0.1s ease-in-out;}
+.bottom-bar-button .icon-thumbsdown:hover {animation: scaleUp 1s linear;}
+
+
+/* animations */
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(6px) scale(1.08);
+    opacity: 0.3;
+    
+  }
+  60% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+
+@keyframes scaleUp {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: scale(1);
+    
+  }
+  40% {
+    transform: scale(1.1);
+   
+    
+  }
+  60% {
+    transform:  scale(1);
+   
+  }
+}
+
+
+.seperator-line {width: 1px; height: 100%; background-color: #3D3D3D; display: inline-block; color: transparent;}
 
 /* Fade-In Animation */
 .fade-div {
   color: #fff;
-  animation: fadeIn 1s ease-out;
+  animation: fadeIn 0.5s ease-out;
 }
 
 /* Keyframe for fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(-100px);
   }
   to {
     opacity: 1;
+    transform: translateY(0px);
   }
 }
 

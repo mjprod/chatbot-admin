@@ -27,10 +27,14 @@
   margin-right: 10px;
 }
 
+.user-name-container {display: flex; flex-direction: column;}
 .user-name {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  
 }
+
+.icon-total-time, .icon-globe-language {transform: translateY(4.2px); margin-right: 0.2rem;}
+.icon-search {scale: 1.2;}
 
 .conversation-details {
   text-align: right;

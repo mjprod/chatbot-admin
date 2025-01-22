@@ -9,6 +9,13 @@ import {
 import './ChatDetail.css';
 import ChatHeader from './ChatHeader.jsx';
 import FeedbackAI from './FeedbackAi.jsx';
+import { ReactComponent as SendSvg } from '../assets/iconSend.svg';
+import { ReactComponent as AttachSvg } from '../assets/iconAttachment.svg';
+import { ReactComponent as IconThreeDots } from '../assets/IconThreeDots.svg';
+import { ReactComponent as AddtoMessage } from '../assets/IconAddtoMessage.svg';
+import { ReactComponent as IconThumbsDown } from '../assets/IconThumbsDown.svg';
+import { ReactComponent as IconAutoSend } from '../assets/IconAutoSend.svg';
+
 
 import { ReactComponent as IconAddtoMessage } from '../assets/IconAddtoMessage.svg';
 import { ReactComponent as IconAutoSend } from '../assets/IconAutoSend.svg';
@@ -116,29 +123,23 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
               )}
 
               {msg.sender === 'bot' && index > 0 && (
-                <div className='fade-div fade-in'>
-                  <div className='bottom-bar'>
-                    <div className='left-buttons'>
-                      <button
-                        className='bottom-bar-button'
-                        onClick={() => copyTextToReview(index, msg.text)}
-                      >
-                        <IconAddtoMessage />
-                      </button>
-                      <button
-                        className='bottom-bar-button'
-                        onClick={() => toggleDivVisibility(index)}
-                      >
-                        <IconThumbsDown />
-                      </button>
+   <div className="fade-div fade-in">
+                  <div className="bottom-bar">
+                    <div className="left-buttons">
+                      <IconThreeDots className="icon-threedots" />
+                      <div className="left-button-options">
+                        <button className="bottom-bar-button" onClick={() => copyTextToReview(index, msg.text)}>
+                          <AddtoMessage className="icon-addtomessage" /></button>
+                          <div className="seperator-line">.</div>
+                        <button
+                          className="bottom-bar-button"
+                          onClick={() => toggleDivVisibility(index)}
+                        >
+                          <IconThumbsDown className="icon-thumbsdown" />
+                        </button></div>
                     </div>
-                    <div className='right-buttons'>
-                      <button
-                        className='bottom-bar-button'
-                        onClick={() => sendToUser(msg.text)}
-                      >
-                        <IconAutoSend />
-                      </button>
+                    <div className="right-buttons">
+                      <button className="bottom-bar-button" onClick={() => sendToUser(msg.text)} ><IconAutoSend className="icon-auto-send" /></button>
                     </div>
                   </div>
                 </div>
@@ -162,9 +163,14 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
             onChange={(e) => setManagerMessage(e.target.value)}
             placeholder='Write a message...'
           />
-          <button className='chat-detail__button' onClick={handleSend}>
-            <span className='button-chev'>› </span>
-          </button>
+          <div className="chatinputbutton-container">
+            <button className="chat-detail__button_attachment" onClick={handleSend}>
+              <span className="button-chev"><AttachSvg className="icon-attachsvg" /> </span>
+            </button>
+            <button className="chat-detail__button" onClick={handleSend}>
+              <span className="button-chev"><SendSvg className="icon-sendsvg" />  </span>
+            </button>
+          </div>
         </div>
       )}
     </div>

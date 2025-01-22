@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #333;
+ 
   padding: 10px 20px;
   border-radius: 5px;
   width: 100%; /* Adjusts to container width */
@@ -12,26 +12,38 @@
 
 .pagination-numbers {
   display: flex;
-  gap: 8px;
+  gap: 0.25rem;
 }
 
 .pagination-number {
   color: #aaa;
   cursor: pointer;
+  font-size: 0.875rem;
+  font-style: normal;
+font-weight: 400;
   padding: 5px 8px;
-  border-radius: 3px;
+  border-radius: 50%;
   transition: background-color 0.2s, color 0.2s;
+  opacity: 0.5;
+  display: inline-flex;
+  width: 33px;
+  height: 33px;
+  align-items: center;
+  justify-content: center;
+  
+  
 }
 
 .pagination-number:hover {
-  background-color: #555;
+  background-color: #55555561;
+  border-radius: 50%;
   color: #fff;
 }
 
 .pagination-number.active {
   color: #fff;
   font-weight: bold;
-  text-decoration: underline;
+  opacity: 1;
 }
 
 .pagination-controls {
