@@ -6,6 +6,8 @@ import './ChatDetail.css';
 import ChatHeader from './ChatHeader.jsx';
 import Feedback from './Feedback.jsx';
 import FeedbackAI from './FeedbackAi.jsx';
+import { ReactComponent as SendSvg } from '../assets/iconSend.svg';
+import { ReactComponent as AttachSvg } from '../assets/iconAttachment.svg';
 
 const ChatDetail = ({ conversationId, onSendMessage }) => {
   const [message, setMessage] = useState('');
@@ -187,9 +189,14 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Write a message..."
           />
-          <button className="chat-detail__button" onClick={handleSend}>
-            <span className="button-chev">› </span>
+         <div className="chatinputbutton-container">
+          <button className="chat-detail__button_attachment" onClick={handleSend}>
+            <span className="button-chev"><AttachSvg className="icon-attachsvg" /> </span>
           </button>
+          <button className="chat-detail__button" onClick={handleSend}>
+            <span className="button-chev"><SendSvg className="icon-sendsvg" />  </span>
+          </button>
+          </div>
         </div>
       )}
     </div>
