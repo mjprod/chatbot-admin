@@ -10,12 +10,12 @@ export const useSocketContext = () => {
 };
 
 export const SocketContextProvider = ({ children }) => {
-  const { message, sendMessage } = useWebSocket(
+  const { message, sendMessage, chatFinished, setChatFinished } = useWebSocket(
     'wss://api-staging.mjproapps.com:8081'
   );
   const [receivedMessages, setReceivedMessages] = useState([]);
   const [conversations, setConversations] = useState([]);
-  
+
   const { t } = useTranslation();
 
   // Monitoramento de mensagens recebidas via WebSocket
@@ -23,8 +23,10 @@ export const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     if (message) {
       const parsedMessage = JSON.parse(message);
-      const { conversationId, text, sender, user ,timestamp , language} = parsedMessage;
+      const { conversationId, text, sender, user, timestamp, language } =
+        parsedMessage;
 
+      console.log('parsedMessage ' + parsedMessage);
       if ('type' in parsedMessage) {
         console.log(parsedMessage);
         const { id, status } = parsedMessage;
@@ -54,18 +56,23 @@ export const SocketContextProvider = ({ children }) => {
             conv.id === conversationId
               ? {
                   ...conv,
-                  messages: [...conv.messages, { sender, text, timestamp,language }],
+                  messages: [
+                    ...conv.messages,
+                    { sender, text, timestamp, language },
+                  ],
                 }
               : conv
           );
         } else {
           // Create a new conversation if it doesn't exist
           const newConversation = {
-            id: conversationId, 
-            title: t('conversation_with', { user: user.charAt(0).toUpperCase() }),
+            id: conversationId,
+            title: t('conversation_with', {
+              user: user.charAt(0).toUpperCase(),
+            }),
             status: STATUS_PENDING,
             user: user,
-            messages: [{ sender, text, timestamp ,language }],
+            messages: [{ sender, text, timestamp, language }],
           };
 
           return [...prevConversations, newConversation];
@@ -79,7 +86,14 @@ export const SocketContextProvider = ({ children }) => {
 
   return (
     <SocketContext.Provider
-      value={{ sendMessage, receivedMessages, conversations, setConversations }}
+      value={{
+        sendMessage,
+        receivedMessages,
+        conversations,
+        setConversations,
+        chatFinished,
+        setChatFinished,
+      }}
     >
       {children}
     </SocketContext.Provider>

@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSocketContext } from '../context/SocketContext';
+import { STATUS_DISCONNECTED, STATUS_PENDING } from '../utils/constants';
 import { generateTimestamp } from '../utils/timestamp.js';
 import CardConversations from './CardConversations';
 import './Sidebar.css';
@@ -7,7 +8,13 @@ import SideBarMessagesHeader from './SideBarMessagesHeader';
 import SidebarPagination from './SidebarPagination';
 
 function Sidebar({ onSelectConversation }) {
-  const { sendMessage, setConversations, conversations } = useSocketContext();
+  const {
+    sendMessage,
+    setConversations,
+    conversations,
+    chatFinished,
+    setChatFinished,
+  } = useSocketContext();
 
   const [filterText, setFilterText] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
@@ -17,16 +24,35 @@ function Sidebar({ onSelectConversation }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
+  useEffect(() => {
+    setConversations((prevConversations) => {
+      const updatedConversations = prevConversations.map((conv) =>
+        conv.id === prevConversations
+          ? {
+              ...conv,
+              status: conv.status === STATUS_DISCONNECTED,
+            }
+          : {}
+      );
+
+      const updatedConversation = updatedConversations.find(
+        (conv) => conv.id === prevConversations
+      );
+      setChatFinished('');
+      return updatedConversations;
+    });
+  }, [chatFinished]);
+
   const filteredConversations = useMemo(() => {
     const filtered = conversations.filter((conversation) => {
       const textMatch =
         conversation.id?.toLowerCase().includes(filterText.toLowerCase()) ||
         conversation.user?.toLowerCase().includes(filterText.toLowerCase());
 
-      const statusMatch = conversation.status
-        .toLowerCase()
-        .includes(filterStatus.toLowerCase());
-
+      const statusMatch =
+        conversation.status
+          ?.toLowerCase()
+          .includes(filterStatus?.toLowerCase()) || false;
       return textMatch && statusMatch;
     });
 
@@ -77,24 +103,25 @@ function Sidebar({ onSelectConversation }) {
         conv.id === id
           ? {
               ...conv,
-              status: conv.status === 'HOLD ON' ? 'pending' : 'HOLD ON',
+              status: conv.status === 'HOLD ON' ? STATUS_PENDING : 'HOLD ON',
             }
-          : { ...conv, status: 'pending' }
+          : { ...conv, status: STATUS_PENDING }
       );
 
       const updatedConversation = updatedConversations.find(
         (conv) => conv.id === id
       );
 
-      sendMessage(
-        JSON.stringify({
-          type: 'status_change',
-          id: updatedConversation.id,
-          status: updatedConversation.status,
-          timestamp: generateTimestamp(),
-        })
-      );
+      const json = JSON.stringify({
+        type: 'status_change',
+        conversationID: updatedConversation.id,
+        status: updatedConversation.status,
+        timestamp: generateTimestamp(),
+      });
 
+      sendMessage(json);
+
+      /*
       sendMessage(
         JSON.stringify({
           text:
@@ -108,7 +135,7 @@ function Sidebar({ onSelectConversation }) {
           timestamp: generateTimestamp(),
         })
       );
-
+*/
       return updatedConversations;
     });
   };
