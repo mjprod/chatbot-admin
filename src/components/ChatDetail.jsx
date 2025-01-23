@@ -69,7 +69,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
 
   if (!conversation) {
     return (
-      <div className='chat-detail__empty'>
+     <div className='chat-detail__empty'>
         <h6>Select a conversation to view details.</h6>
       </div>
     );

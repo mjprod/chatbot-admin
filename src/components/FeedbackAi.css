@@ -1,7 +1,7 @@
 /* FeedbackAi ***/
 .feedbackai-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   font-size: 2rem;
   margin-top: 1rem;
@@ -15,7 +15,7 @@
   margin-top: 1.5rem;
   border: 2px dashed #ff000070;
   padding: 2rem 2rem 2rem 2rem;
-  width: 80%;
+  width: 59ch;
   gap: 1rem;
 
 
@@ -51,7 +51,7 @@ input {
 .confirm-button {
   width: 30%;
   height: 45px;
-  margin-right: 10%;
+
   margin-top: 0.2rem;
   border-radius: 6px;
   clip-path: polygon(0 0, 100% 0%, 95% 100%, 5% 100%);
@@ -61,5 +61,5 @@ input {
   );
   color: black;
   font-size: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }

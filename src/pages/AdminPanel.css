@@ -147,7 +147,7 @@
   border-radius: 0.5rem;
   margin-left: auto;
   position: relative;
-  max-width: 90%;
+  max-width: 120ch;
 }
 
 .chat-detail__message--bot .chat-detail__icon {
@@ -210,7 +210,7 @@
   border: 1px solid #56544a66;
   box-shadow: 0 2px 2px #0000004d;
   color: #fff;
-  max-width: 95%;
+  max-width: 120ch;
   text-align: left;
   margin-left: 3rem;
   border-radius: 0.5rem;
@@ -290,7 +290,7 @@
 
 .text-sent-admin, .text-sent-bot { margin-left: auto;
   position: relative;
-  max-width: 90%;}
+  max-width: 120ch;}
 
 .chat-detail__message--admin {
   border: 1px solid #ffdea8;
@@ -309,7 +309,7 @@
   border-radius: 0.5rem;
   margin-left: auto;
   position: relative;
-  max-width: 90%;
+  max-width: 120ch;
 
   
 }
