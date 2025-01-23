@@ -82,7 +82,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
     }));
   };
 
-  const copyTextToReview = (text) => {
+  const copyTextToReview = (index,text) => {
     if (conversation.status === 'HOLD ON') {
       setManagerMessage(text);
     } else {
@@ -123,7 +123,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
               )}
 
               {msg.sender === 'bot' && index > 0 && (
-                <div className='fade-div fade-in'>
+                <div className=' fade-in'>
                   <div className='bottom-bar'>
                     <div className='left-buttons'>
                       <IconThreeDots className='icon-threedots' />

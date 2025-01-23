@@ -15,7 +15,7 @@ function Sidebar({ onSelectConversation }) {
   const [sortOrderHold, setSortHold] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 2;
 
   const filteredConversations = useMemo(() => {
     const filtered = conversations.filter((conversation) => {
@@ -132,6 +132,7 @@ function Sidebar({ onSelectConversation }) {
           />
         ))}
       </ul>
+      <div className="scroll-fader"></div>
       <SidebarPagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

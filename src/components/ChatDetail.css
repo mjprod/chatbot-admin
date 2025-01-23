@@ -7,6 +7,8 @@
   bottom: 0;
   left: 30;
   right: 0;
+  max-width: 90%;
+  margin: 0 1rem 0rem auto;
 }
 
 /* Left buttons group */
@@ -153,18 +155,20 @@ box-shadow: 0px 7px 6px 0px rgba(0, 0, 0, 0.30) inset;
 
 .text-sent-user {
   margin-right: 8px;
-  justify-content: flex-end;
+  justify-content: flex-start;
   text-align: right;
+  max-width: 90%;
+  margin-left: 3rem;
 }
 
 .text-sent-admin {
   margin-left: 30px;
-  justify-content: flex-start;
+  justify-content: flex-end;
   text-align: left;
 }
 
 .text-sent-bot {
   margin-left: 60px;
-  justify-content: flex-start;
-  text-align: left;
+  justify-content: flex-end;
+  text-align: right;
 }

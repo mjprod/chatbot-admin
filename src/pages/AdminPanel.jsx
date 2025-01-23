@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ChatDetail from '../components/ChatDetail';
 import Sidebar from '../components/Sidebar';
 import { useSocketContext } from '../context/SocketContext';
-import { conversation1 } from '../data/arrays';
+import { conversation1, conversation2, conversation3  } from '../data/arrays';
 import { ReactComponent as NoChat } from '../assets/nochat.svg';
 import './AdminPanel.css';
 
@@ -28,8 +28,8 @@ function AdminPanel() {
   //TESTER
   useEffect(() => {
     setConversations((prev) => [...prev, conversation1]);
-    //setConversations((prev) => [...prev, conversation2]);
-    //setConversations((prev) => [...prev, conversation3]);
+    setConversations((prev) => [...prev, conversation2]);
+    setConversations((prev) => [...prev, conversation3]);
     //setConversations((prev) => [...prev, conversation4]);
     //setConversations((prev) => [...prev, conversation5]);
     //setConversations((prev) => [...prev, conversation6]);
@@ -92,7 +92,7 @@ function AdminPanel() {
               />
             ) : (
               <div className='chat-detail__empty'>
-                  <NoChat className="no-chat" />
+                  <NoChat className='no-chat' />
                 <h6>{t('select_conversation_to_view')}</h6>
               </div>
             )}

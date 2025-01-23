@@ -10,45 +10,63 @@
   transition: all 0.3s ease;
   cursor: pointer;
   margin: 10px 0;
-  box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.1);
 }
-
-
 
 /* "HOLD ON" Active State */
 .card-active {
   border-color: #6ecf67; /* Green border */
-  background-color: #2B2B2B;
+  background-color: #2b2b2b;
   border-width: 2px;
+}
+
+.overlay-card.false:nth-child(1) {
+  margin-top: 1rem;
+}
+
+.overlay-card.false:last-child{
+  margin-bottom: 3rem;}
+
+.overlay-card.false {
+  padding: 0 1.5rem;
+  transition: all 250ms cubic-bezier(0.735, 0.005, 0.185, 1.005);
+ 
+}
+
+.overlay-card.true {
+  background: var(--jokerColors-jokerBlack-jokerBlack300, #262626);
+  box-shadow:
+    0px 2px 0px 0px rgba(255, 255, 255, 0.05),
+    0px 5px 5px 0px #000 inset;
+  padding: 1.5rem 1.5rem;
+  transition: all 250ms cubic-bezier(0.735, 0.005, 0.185, 1.005);
+  margin-bottom: 1rem;
 }
 
 .card-onhold-danger {
   border-color: #6ecf67;
   border-width: 2px;
- 
 }
 
 /* Delayed Reply - Red Alert */
 .card-danger {
-  border-color: rgba(219, 62, 62, 0.50); /* Red */
-  background: rgba(61, 61, 61, 0.20);
-
+  border-color: rgba(219, 62, 62, 0.5); /* Red */
+  background: rgba(61, 61, 61, 0.2);
 }
 
 /* Moderate Delay - Orange Alert */
 .card-warning {
-  border-color: rgba(226, 147, 101, 0.50);; /* Orange */
- 
+  border-color: rgba(226, 147, 101, 0.5); /* Orange */
 }
 
 /* Default State */
 .card-normal {
-  border-color: rgba(95, 95, 95, 0.40);
+  border-color: rgba(95, 95, 95, 0.4);
   background-color: rgba(61, 61, 61, 0.4);
 }
-
-
-
+.card-spacer {
+  height: 0.25rem;
+}
 /* Card Content */
 .card-content {
   display: flex;
@@ -61,7 +79,6 @@
   justify-content: space-between;
   font-size: 0.8rem;
   color: #ccc;
-  
 }
 
 .card-user {
@@ -85,11 +102,10 @@
 }
 
 .user-name {
-  
   font-size: 1rem;
   font-style: normal;
-font-weight: 400;
-line-height: 150%; /* 1.5rem */
+  font-weight: 400;
+  line-height: 150%; /* 1.5rem */
 }
 
 /* Actions Section */
@@ -100,7 +116,9 @@ line-height: 150%; /* 1.5rem */
   gap: 1rem;
 }
 
-.horizontal-separator {opacity: 0.2;}
+.horizontal-separator {
+  opacity: 0.2;
+}
 
 /* Toggle Switch */
 .toggle-switch {
@@ -115,6 +133,8 @@ line-height: 150%; /* 1.5rem */
   height: 0;
 }
 
+
+
 .toggle-switch .slider {
   position: absolute;
   cursor: pointer;
@@ -126,15 +146,15 @@ line-height: 150%; /* 1.5rem */
   transition: 0.4s;
   border-radius: 1rem;
   border-radius: 5rem;
-background: #5F5F5F;
-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
+  background: #5f5f5f;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
 }
 
 .toggle-switch input:checked + .slider {
-  background-color: #8BE99B;
+  background-color: #8be99b;
   height: 19px;
 
-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
 }
 
 .toggle-switch .slider::before {
@@ -143,22 +163,27 @@ box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
   width: 20px;
   height: 20px;
   border-radius: 50%;
+ background: linear-gradient(180deg, #1E1E1E 0%, #3D3D3D 21.88%, #5F5F5F 49.48%, #1E1E1E 52.6%);
+  border: 1px solid rgba(166, 166, 166, 0.40);
+  filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.80));
+  top: -1px;
+  left: 2px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 2px rgb(0, 0, 0);
+
+
+}
+
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(1.2rem);
   background: linear-gradient(
     314deg,
     #d6bc9e 12.4%,
     #ffeec0 50.91%,
     #d6bc9e 118.01%
   );
-  top: -1px;
-  left: 2px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 2px rgb(0, 0, 0);
-  border: 1px solid #ffdea8;
-
-}
-
-.toggle-switch input:checked + .slider::before {
-  transform: translateX(1.2rem);
+  
 }
 
 /* State Button */
@@ -166,7 +191,7 @@ box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
   padding: 0.3rem 1rem;
   border-radius: 1rem;
   font-size: 0.75rem;
- 
+
   color: #fff;
   border: none;
   cursor: pointer;
@@ -176,8 +201,11 @@ box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
 
 /* Active State Button */
 .state-active {
-  background-color: #8BE99B; /* Green */
+  background-color: #8be99b; /* Green */
   color: #131313;
+  text-shadow: 0px 1px 0px rgba(187, 255, 173, 0.95);
+  border: 1px solid rgba(208, 255, 216, 0.47);
+  box-shadow: 0 2px 0 color(srgb 0.2395 0.465 0.33), -2px 2px 3px -1px color(srgb 0.7413 0.995 0.7842) inset, 1px 5px 10px color(srgb 0 0 0 / 0.23);
 }
 
 /* Button Matches Card Type */
@@ -186,19 +214,18 @@ box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.45) inset;
 }
 
 .state-button.card-warning {
-  background-color: #904E28; /* Orange */
+  background-color: #904e28; /* Orange */
 }
 
 .state-button.card-normal {
-  background-color: #3D3D3D; /* Default gray */
+  background-color: #3d3d3d; /* Default gray */
 }
-
 
 .last-reply-normal {
   color: #ccc;
 }
 .last-reply-warning {
-  color: #ffa500; 
+  color: #ffa500;
   font-weight: bold;
 }
 .last-reply-danger {

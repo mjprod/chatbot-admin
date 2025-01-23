@@ -1,4 +1,6 @@
 import "./SidebarPagination.css";
+import { ReactComponent as IconDownChevron} from '../assets/iconChevronRight.svg';
+
 
 const SidebarPagination = ({ totalPages, currentPage, setCurrentPage }) => {
   const handlePageChange = (page) => {
@@ -29,14 +31,14 @@ const SidebarPagination = ({ totalPages, currentPage, setCurrentPage }) => {
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          ◀
+           <IconDownChevron className="pagination-icon-left" />
         </button>
         <button
           className="pagination-arrow"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
-          ▶
+          <IconDownChevron className="pagination-icon-right" />
         </button>
       </div>
     </div>
