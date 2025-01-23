@@ -159,6 +159,7 @@ function Sidebar({ onSelectConversation }) {
           />
         ))}
       </ul>
+      <div className='scroll-fader' />
       <SidebarPagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

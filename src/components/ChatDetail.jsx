@@ -118,14 +118,14 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
               )}
 
               {msg.sender === 'bot' && index > 0 && (
-                <div className='fade-div fade-in'>
+                <div className=' fade-in'>
                   <div className='bottom-bar'>
                     <div className='left-buttons'>
                       <IconThreeDots className='icon-threedots' />
                       <div className='left-button-options'>
                         <button
                           className='bottom-bar-button'
-                          onClick={() => copyTextToReview(index, msg.text)}
+                          onClick={() => copyTextToReview(msg.text)}
                         >
                           <AddtoMessage className='icon-addtomessage' />
                         </button>
