@@ -17,6 +17,7 @@ import ChatHeader from './ChatHeader.jsx';
 import FeedbackAI from './FeedbackAi.jsx';
 
 import { SENDER_ADMIN, SENDER_BOT, SENDER_USER } from '../utils/constants';
+import ChatEmptyState from './ChatEmptyState';
 
 const ChatDetail = ({ conversationId, onSendMessage }) => {
   const { t } = useTranslation();
@@ -56,8 +57,6 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
     switch (sender) {
       case SENDER_BOT:
         return '🤖';
-      case 'bot_on_hold':
-        return '⏳';
       case SENDER_USER:
         return '👤';
       case SENDER_ADMIN:
@@ -68,11 +67,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
   };
 
   if (!conversation) {
-    return (
-      <div className='chat-detail__empty'>
-        <h6>Select a conversation to view details.</h6>
-      </div>
-    );
+    return <ChatEmptyState />;
   }
 
   const toggleDivVisibility = (index) => {
@@ -123,14 +118,14 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
               )}
 
               {msg.sender === 'bot' && index > 0 && (
-                <div className='fade-div fade-in'>
+                <div className=' fade-in'>
                   <div className='bottom-bar'>
                     <div className='left-buttons'>
                       <IconThreeDots className='icon-threedots' />
                       <div className='left-button-options'>
                         <button
                           className='bottom-bar-button'
-                          onClick={() => copyTextToReview(index, msg.text)}
+                          onClick={() => copyTextToReview(msg.text)}
                         >
                           <AddtoMessage className='icon-addtomessage' />
                         </button>

@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ChatDetail from '../components/ChatDetail';
+import ChatEmptyState from '../components/ChatEmptyState';
 import Sidebar from '../components/Sidebar';
 import { useSocketContext } from '../context/SocketContext';
-import { conversation1 } from '../data/arrays';
-import { ReactComponent as NoChat } from '../assets/nochat.svg';
+import { SENDER_ADMIN } from '../utils/constants';
 import './AdminPanel.css';
 
 function AdminPanel() {
@@ -27,7 +27,7 @@ function AdminPanel() {
 
   //TESTER
   useEffect(() => {
-    setConversations((prev) => [...prev, conversation1]);
+    //setConversations((prev) => [...prev, conversation1]);
     //setConversations((prev) => [...prev, conversation2]);
     //setConversations((prev) => [...prev, conversation3]);
     //setConversations((prev) => [...prev, conversation4]);
@@ -56,7 +56,11 @@ function AdminPanel() {
 
     const updatedMessages = [
       ...conversation.messages,
-      { sender: 'admin', text: message, timestamp: new Date().toISOString() },
+      {
+        sender: SENDER_ADMIN,
+        text: message,
+        timestamp: new Date().toISOString(),
+      },
     ];
 
     // Update locally
@@ -91,10 +95,7 @@ function AdminPanel() {
                 onSendMessage={handleSendMessage}
               />
             ) : (
-              <div className='chat-detail__empty'>
-                  <NoChat className="no-chat" />
-                <h6>{t('select_conversation_to_view')}</h6>
-              </div>
+              <ChatEmptyState />
             )}
           </div>
           <div ref={messagesEndRef} />
