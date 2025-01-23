@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 const useWebSocket = (url) => {
   const [message, setMessage] = useState(null);
   const [socket, setSocket] = useState(null);
+  const [chatFinished, setChatFinished] = useState(null);
 
   useEffect(() => {
     const ws = new WebSocket(url);
@@ -18,6 +19,12 @@ const useWebSocket = (url) => {
       if ('type' in jsonMessage) {
         if (jsonMessage.type === 'status_change') {
           console.log(jsonMessage);
+          return;
+        }
+
+        if (jsonMessage.type === 'status_disconnect') {
+          console.log(jsonMessage);
+          setChatFinished(jsonMessage.conversationID);
           return;
         }
       }
@@ -46,12 +53,10 @@ const useWebSocket = (url) => {
   const sendMessage = (msg) => {
     console.log(`Received message Admin: ${msg}`);
     if (socket && socket.readyState === WebSocket.OPEN) {
-      console.log(msg);
       socket.send(msg);
     }
   };
-
-  return { message, sendMessage };
+  return { message, sendMessage, chatFinished, setChatFinished };
 };
 
 export default useWebSocket;
