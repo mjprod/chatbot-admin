@@ -28,8 +28,8 @@
 }
 
 .user-name-container {display: flex; flex-direction: column;}
-.user-name {
-  font-size: 1.25rem;
+.user-name-container .user-name {
+  font-size: 1.6rem;
   
 }
 

@@ -8,6 +8,7 @@
   width: 100%; /* Adjusts to container width */
   max-width: 1200px;
   margin: 0 auto; /* Center pagination on the page */
+  margin-top: -6rem;
 }
 
 .pagination-numbers {
@@ -52,17 +53,18 @@ font-weight: 400;
 }
 
 .pagination-arrow {
-  background: none;
+  background: #3D3D3D;
   border: 1px solid #555;
   color: #aaa;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
+  
 }
 
 .pagination-arrow:hover {
@@ -71,6 +73,8 @@ font-weight: 400;
 }
 
 .pagination-arrow:disabled {
-  color: #555;
+  opacity: 0.3;
   cursor: not-allowed;
 }
+.pagination-icon-right {transform: scale(0.8) translateX(1px);}
+.pagination-icon-left {transform: scaleX(-100%) scale(0.8) translateX(1px);}

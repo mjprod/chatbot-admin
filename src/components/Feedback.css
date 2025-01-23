@@ -93,7 +93,7 @@
 .confirm-button {
   width: 90%;
   height: 45px;
-  margin-right: 10%;
+
   margin-top: 0.2rem;
   border-radius: 6px;
   clip-path: polygon(0 0, 100% 0%, 95% 100%, 5% 100%);

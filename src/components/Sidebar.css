@@ -1,0 +1,8 @@
+.scroll-fader {
+  display: block;
+  background: linear-gradient(180deg, rgb(18, 18, 18, 0) 0%, #262626 100%);
+  transform: translateY(-3.07rem) translateX(2.5px);
+  width: 95.7%;
+  border-radius: 0 0 0 0.88rem;
+  
+}

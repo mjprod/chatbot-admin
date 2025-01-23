@@ -14,8 +14,10 @@
 
 .chat-detail h6 {
   color: rgb(118, 118, 118);
-  font-size: clamp(1rem, 0.9432rem + 0.2841vw, 1.125rem);
+  font-size: clamp(1.2rem, 0.9832rem + 0.2841vw, 1.5rem);
   font-weight: normal;
+  line-height: 90%;
+  opacity: 0.6;
 }
 
 /**** Chat Detail ****/
@@ -28,8 +30,12 @@
   justify-content: center;
 }
 
-.no-chat { width: 27vw;
-  margin: 0 auto;}
+.no-chat {
+  width: 40%;
+  margin: 0 auto;
+  opacity: 0.3;
+  margin-bottom: -7vh;
+}
 
 .chat-detail__empty h6 {
   white-space: pre-wrap;
@@ -45,7 +51,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 8.5em 1fr 10em;
   grid-template-areas:
-    'details' 
+    'details'
     'message-content'
     'message-input';
 }
@@ -53,6 +59,7 @@
 .chat-detail__messages {
   flex: 1;
   overflow-y: auto;
+  overflow-x: clip;
   height: 100%;
   padding: 1.5rem;
 }
@@ -70,33 +77,60 @@
   margin-right: 2rem;
 }
 
-/* width */
-.chat-detail__messages::-webkit-scrollbar,
+/* Scrollbar for .chat-detail__messages */
+.chat-detail__messages::-webkit-scrollbar {
+  width: 0.8rem;
+  border-radius: 1rem;
+}
+
+/* Track for .chat-detail__messages */
+.chat-detail__messages::-webkit-scrollbar-track {
+  box-shadow: 0 5px 2px black inset;
+  border-left: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-right: 1px solid transparent;
+  border-radius: 1rem;
+}
+
+/* Handle for .chat-detail__messages */
+.chat-detail__messages::-webkit-scrollbar-thumb {
+  background: rgb(55, 55, 55);
+  filter: drop-shadow(0 1px 1rem black);
+  border-radius: 1rem;
+  border: 1px solid rgba(105, 105, 105, 0.116);
+  opacity: 0.85;
+}
+
+/* Handle on hover for .chat-detail__messages */
+.chat-detail__messages::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+}
+
+/* Scrollbar for .chat-card-container */
 .chat-card-container::-webkit-scrollbar {
   width: 0.8rem;
   border-radius: 1rem;
 }
 
-/* Track */
-.chat-detail__messages::-webkit-scrollbar-track,
+/* Track for .chat-card-container */
 .chat-card-container::-webkit-scrollbar-track {
   box-shadow: 0 5px 2px black inset;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-right: 1px solid transparent;
+  border-radius: 0 1rem 1rem 0;
 }
 
-/* Handle */
-.chat-detail__messages::-webkit-scrollbar-thumb,
+/* Handle for .chat-card-container */
 .chat-card-container::-webkit-scrollbar-thumb {
-  background: rgb(80, 80, 80);
-  box-shadow: 0 1px 1rem black;
-  border-radius: 1rem;
-  border: 1px solid rgb(105, 105, 105, 0.5);
+  background: rgb(55, 55, 55);
+  filter: drop-shadow(0 1px 1rem black);
+  border-radius: 0 1rem 1rem 0;
+  border: 1px solid rgba(105, 105, 105, 0.116);
   opacity: 0.85;
 }
 
-/* Handle on hover */
-.chat-detail__messages::-webkit-scrollbar-thumb:hover,
+/* Handle on hover for .chat-card-container */
 .chat-card-container::-webkit-scrollbar-thumb:hover {
   opacity: 1;
 }
@@ -107,11 +141,13 @@
   color: #80a29f;
   display: flex;
   align-items: flex-start;
+  flex-direction: row-reverse;
   background-color: #212121;
   padding: 2em;
   border-radius: 0.5rem;
-  margin-left: 3rem;
+  margin-left: auto;
   position: relative;
+  max-width: 120ch;
 }
 
 .chat-detail__message--bot .chat-detail__icon {
@@ -167,16 +203,16 @@
 /******* 👤👤👤👤👤👤 User [start] 👤👤👤👤👤👤 ******/
 .chat-detail__message--user {
   display: flex;
-  flex-direction: row-reverse;
-  align-self: flex-end;
+  flex-direction: row;
+  align-self: flex-start;
   padding: 1rem;
   background-color: #dddddd1f;
   border: 1px solid #56544a66;
   box-shadow: 0 2px 2px #0000004d;
   color: #fff;
-  max-width: 95%;
-  text-align: right;
-  margin-left: auto;
+  max-width: 120ch;
+  text-align: left;
+  margin-left: 3rem;
   border-radius: 0.5rem;
 }
 
@@ -252,11 +288,17 @@
 
 /******* 👨‍💻👨‍💻👨‍💻👨‍💻👨‍💻 Admin on Hold [start] 👨‍💻👨‍💻👨‍💻👨‍💻👨‍💻 ******/
 
+.text-sent-admin, .text-sent-bot { margin-left: auto;
+  position: relative;
+  max-width: 120ch;}
+
 .chat-detail__message--admin {
   border: 1px solid #ffdea8;
   color: #000;
   display: flex;
-  align-items: flex-start;
+  text-align: right;
+  flex-direction: row-reverse;
+  align-items: flex-end;
   background: linear-gradient(
     314deg,
     #d6bc9e 12.4%,
@@ -265,7 +307,11 @@
   );
   padding: 1rem;
   border-radius: 0.5rem;
-  margin-left: 1.2rem;
+  margin-left: auto;
+  position: relative;
+  max-width: 120ch;
+
+  
 }
 
 .chat-detail__message--admin .chat-detail__icon {
@@ -285,7 +331,7 @@
   z-index: 8;
   bottom: 0;
   padding: 1rem 2.265rem 4lvh 2.265rem;
-  box-shadow: rgba(0, 0, 0, 0.49) 0px -2px 15px;
+  box-shadow: 0 -19px 16px -8px rgba(0, 0, 0, 0.49);
   background-color: #262626;
   border-top: 1px solid rgb(56, 56, 56);
 
@@ -304,20 +350,20 @@
   resize: none;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  transition: all 0.3s ease; 
-  opacity: 0.6; 
+  transition: all 0.3s ease;
+  opacity: 0.6;
 }
 
 .chat-detail__textarea:hover {
-    opacity: 1;
-    transition: all 0.2s ease;  
+  opacity: 1;
+  transition: all 0.2s ease;
 }
 
 .chat-detail__textarea:focus {
   transform: translateY(0px);
   background-color: #000000;
   border: 1px solid #878787b1;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
 }
 
 .chatinputbutton-container {
@@ -390,7 +436,7 @@
   display: flex;
   flex-direction: column;
   border-left: 1px solid #323232;
-  background-color:  #262626;
+  background-color: #262626;
   padding: 1rem;
   z-index: 6;
   flex: 1 0 100lvh;
@@ -398,23 +444,12 @@
 .sidebar-inner {
   height: 100%;
   display: grid;
-  grid-template-rows: 137px 1fr 74px;
+  grid-template-rows: 122px 1fr 3rem 74px;
   flex-direction: column;
-  border: 1px solid #3d3d3d;
-  border-radius: 1rem;
   margin: 1.5rem;
-  background-color: rgba(35, 35, 35, 0.241);
 
 }
 
-/* .chat-card-container::after {
-  content: '';
-  display: flex;
-  height: 3rem;
-  background: linear-gradient(180deg, rgb(18, 18, 18, 0) 0%, #262626 100%);
-  transform: translateY(-100%);
-  pointer-events: none; 
-} */
 .sidebar-title {
   padding: 1rem;
   border-bottom: 1px solid #333;
@@ -425,14 +460,19 @@
 }
 
 .chat-card-container {
-  padding: 0.6rem;
+  margin-block: 0;
+  padding-inline-start: unset;
   margin: 0;
+  min-height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  flex: 1 1 500px;
+  margin-block: 0;
+  border: 1px solid #3d3d3d;
+  border-radius: 1rem;
+  background-color: rgba(35, 35, 35, 0.241);
+  /* flex: 1 1 500px; */
   scrollbar-color: rgb(112, 106, 93) rgb(6, 6, 6);
-  padding: 2rem;
 }
 
 .sidebar-list {

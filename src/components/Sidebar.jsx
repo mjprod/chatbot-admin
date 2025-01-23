@@ -22,7 +22,7 @@ function Sidebar({ onSelectConversation }) {
   const [sortOrderHold, setSortHold] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 2;
 
   useEffect(() => {
     setConversations((prevConversations) => {

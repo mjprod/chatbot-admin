@@ -6,6 +6,7 @@ import ChatDetail from '../components/ChatDetail';
 import ChatEmptyState from '../components/ChatEmptyState';
 import Sidebar from '../components/Sidebar';
 import { useSocketContext } from '../context/SocketContext';
+import { conversation1, conversation2, conversation3 } from '../data/arrays';
 import { SENDER_ADMIN } from '../utils/constants';
 import './AdminPanel.css';
 
@@ -27,6 +28,9 @@ function AdminPanel() {
 
   //TESTER
   useEffect(() => {
+    setConversations((prev) => [...prev, conversation1]);
+    setConversations((prev) => [...prev, conversation2]);
+    setConversations((prev) => [...prev, conversation3]);
     //setConversations((prev) => [...prev, conversation1]);
     //setConversations((prev) => [...prev, conversation2]);
     //setConversations((prev) => [...prev, conversation3]);
