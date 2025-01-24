@@ -27,12 +27,7 @@ const ThankYouScreen = ({ language }) => {
         <IconThankYouFeedback className="icon-thankyou-feedback" />
         <h3 className="thankyou-heading">{thankYou}</h3>
         <p className="thankyou-text">{seeYouSoon}</p>
-        <button
-          className="thankyou-button"
-          onClick={() => window.location.reload()}
-        >
-          ↻ Reload
-        </button>
+        
       </div>
     </div>
   );
