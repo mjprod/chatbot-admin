@@ -20,13 +20,27 @@ import { SENDER_ADMIN, SENDER_BOT, SENDER_USER } from '../utils/constants';
 import ChatEmptyState from './ChatEmptyState';
 
 const ChatDetail = ({ conversationId, onSendMessage }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [managerMessage, setManagerMessage] = useState('');
   const { sendMessage, conversations } = useSocketContext();
 
   const conversation = conversations.find((conv) => conv.id === conversationId);
   const [visibleDivs, setVisibleDivs] = useState({});
+
+  const [languageSelected, setLanguageSelected] = useState('en');
+
+  useEffect(() => {
+    if (conversation?.messages?.length > 0) {
+      const initialLanguage = conversation.messages[0]?.language || 'en';
+      setLanguageSelected(initialLanguage);
+      i18n.changeLanguage(initialLanguage); // Update the translation library
+    } else {
+      // Set a default language when conversation.messages is invalid
+      setLanguageSelected('en');
+      i18n.changeLanguage('en');
+    }
+  }, [conversation?.messages, i18n]);
 
   useEffect(() => {
     if (conversation) {
@@ -35,7 +49,10 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
   }, [conversation]);
 
   const handleSend = (text) => {
-    if (managerMessage.trim() || text) {
+    if (
+      (managerMessage && managerMessage.trim()).length > 1 ||
+      text.length > 1
+    ) {
       sendMessage(
         JSON.stringify({
           text: managerMessage || text,
@@ -96,7 +113,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
     <div className='chat-detail-container'>
       <ChatHeader conversation={conversation} />
       <div className='chat-detail__messages'>
-        {conversation.messages.map((msg, index) => {
+        {conversation.messages?.map((msg, index) => {
           return (
             <div key={msg.timestamp} className='chat-container'>
               {msg.text && (
