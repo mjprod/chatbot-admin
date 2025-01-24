@@ -22,7 +22,7 @@ const ThankYouScreen = ({ language }) => {
   const { thankYou, seeYouSoon } = messages[language] || messages['en'];
 
   return (
-    <div className="thankyou-container">
+    <div className='thankyou-container'>
       <div className="thankyou-card">
         <IconThankYouFeedback className="icon-thankyou-feedback" />
         <h3 className="thankyou-heading">{thankYou}</h3>
