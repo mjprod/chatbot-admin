@@ -327,11 +327,9 @@
 
 .chat-detail__input-container {
   gap: 1rem;
-  position: sticky;
-  z-index: 8;
   bottom: 0;
   padding: 1rem 2.265rem 4lvh 2.265rem;
-  box-shadow: 0 -19px 16px -8px rgba(0, 0, 0, 0.49);
+  
   background-color: #262626;
   border-top: 1px solid rgb(56, 56, 56);
 height: 100%;
