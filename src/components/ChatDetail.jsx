@@ -178,7 +178,8 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
       </div>
 
       {conversation.status === 'HOLD ON' && (
-        <div className='chat-detail__input-container'>
+        <div className="message-holder">
+        <div className='chat-detail__input-container fade-bottom'>
           <textarea
             className='chat-detail__textarea'
             value={managerMessage}
@@ -200,7 +201,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
               </span>
             </button>
           </div>
-        </div>
+        </div></div>
       )}
     </div>
   );
