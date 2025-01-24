@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useWebSocket from '../hook/useWebSocket';
-import { STATUS_PENDING } from '../utils/constants';
+import { STATUS_PENDING, WEBSOCKET_SERVER } from '../utils/constants';
 
 const SocketContext = createContext();
 
@@ -10,9 +10,8 @@ export const useSocketContext = () => {
 };
 
 export const SocketContextProvider = ({ children }) => {
-  const { message, sendMessage, chatFinished, setChatFinished } = useWebSocket(
-    'wss://api-staging.mjproapps.com:8081'
-  );
+  const { message, sendMessage, chatFinished, setChatFinished } =
+    useWebSocket(WEBSOCKET_SERVER);
   const [receivedMessages, setReceivedMessages] = useState([]);
   const [conversations, setConversations] = useState([]);
 
