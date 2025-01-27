@@ -9,7 +9,7 @@ const FeedbackAI = ({ conversation_id }) => {
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [correctQuestion, setCorrectQuestion] = useState('');
   const { loading, saveFeedback } = useApiRequest();
-  const [showThankYou, setShowThankYou] = useState(true);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const handleRightAnswer = (text) => {
     setCorrectAnswer(text);
