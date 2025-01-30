@@ -8,8 +8,8 @@ const useApiRequest = () => {
   const [success, setSuccess] = useState(null); // Track request success
 
   //const server = "http://127.0.0.1:8000/";
-  //const server = "https://api-staging.mjproapps.com/";
-  const server = "https://api.mjproapps.com/";
+  const server = "https://api-staging.mjproapps.com/";
+  //const server = "https://api.mjproapps.com/";
 
   // Core fetch function for API requests
   const fetchData = async (config) => {
