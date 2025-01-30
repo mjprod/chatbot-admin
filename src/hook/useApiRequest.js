@@ -6,6 +6,7 @@ const useApiRequest = () => {
   const [error, setError] = useState(null); // Track API errors
   const [response, setResponse] = useState(null); // Store API responses
   const [success, setSuccess] = useState(null); // Track request success
+  const FIXED_TOKEN = "4d4a50524f4432303232";
 
   //const server = "http://127.0.0.1:8000/";
   const server = "https://api-staging.mjproapps.com/";
@@ -20,10 +21,16 @@ const useApiRequest = () => {
       setError(null); // Reset errors on new request
       setSuccess(null); // Reset success status
 
+      const authHeaders = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${FIXED_TOKEN}`, // Adiciona o token em todas as chamadas
+        ...headers,
+      };
+
       // Perform the fetch request
       const res = await fetch(url, {
         method,
-        headers,
+        headers: authHeaders,
         body: body ? JSON.stringify(body) : null,
       });
 
