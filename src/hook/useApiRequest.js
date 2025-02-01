@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SERVER } from "../utils/constants";
 
 // Custom hook for making API requests using fetch
 const useApiRequest = () => {
@@ -9,9 +10,7 @@ const useApiRequest = () => {
   const FIXED_TOKEN = "4d4a50524f4432303232";
 
 
-  //const server = "http://127.0.0.1:8000/";
-  const server = "https://api-staging.mjproapps.com/";
-  //const server = "https://api.mjproapps.com/";
+
 
   // Core fetch function for API requests
   const fetchData = async (config) => {
@@ -24,7 +23,7 @@ const useApiRequest = () => {
 
       const authHeaders = {
         "Content-Type": "application/json",
-        Authorization: `Token ${FIXED_TOKEN}`, // Adiciona o token em todas as chamadas
+        Authorization: `Token ${FIXED_TOKEN}`,
         ...headers,
       };
 
@@ -66,7 +65,7 @@ const useApiRequest = () => {
     }
 
     const config = {
-      url: server + `api/capture_feedback_multi/?language=${language}`,
+      url: SERVER + `api/capture_feedback_multi/?language=${language}`,
       method: "POST",
       mode: "no-cors",
       headers: {
