@@ -4,7 +4,7 @@ import useApiRequest from '../hook/useApiRequest.js';
 import './FeedbackAi.css';
 import ThankYouScreen from './ThankYouScreen.js';
 
-const FeedbackAI = ({ conversation_id }) => {
+const FeedbackAI = ({ conversation_id, language }) => {
   const [showConfirmButton, setShowConfirmButton] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [correctQuestion, setCorrectQuestion] = useState('');
@@ -39,7 +39,7 @@ const FeedbackAI = ({ conversation_id }) => {
     console.log('Feedback Data:', feedbackData); // Log the feedback data
 
     //TODO - Add language selection
-    const result = await saveFeedback(feedbackData, 'en'); // Send feedback to the API
+    const result = await saveFeedback(feedbackData, language); // Send feedback to the API
 
     if (result.success) {
       setShowThankYou(true);

@@ -35,6 +35,7 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
       const initialLanguage = conversation.messages[0]?.language || 'en';
       setLanguageSelected(initialLanguage);
       i18n.changeLanguage(initialLanguage); // Update the translation library
+      setLanguageSelected(initialLanguage);
     } else {
       // Set a default language when conversation.messages is invalid
       setLanguageSelected('en');
@@ -88,10 +89,14 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
   }
 
   const toggleDivVisibility = (index) => {
-    setVisibleDivs((prevState) => ({
-      ...prevState,
-      [index]: !prevState[index],
-    }));
+    if (conversation.status === 'HOLD ON') {
+      setVisibleDivs((prevState) => ({
+        ...prevState,
+        [index]: !prevState[index],
+      }));
+    } else {
+      alert(t('conversation_on_hold_first'));
+    }
   };
 
   const copyTextToReview = (text) => {
@@ -169,7 +174,10 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
               {/* Fading Div */}
               {visibleDivs[index] && (
                 <div className='fade-div fade-in'>
-                  <FeedbackAI conversation_id={conversationId} />
+                  <FeedbackAI
+                    conversation_id={conversationId}
+                    language={languageSelected}
+                  />
                 </div>
               )}
             </div>
@@ -178,30 +186,31 @@ const ChatDetail = ({ conversationId, onSendMessage }) => {
       </div>
 
       {conversation.status === 'HOLD ON' && (
-        <div className="message-holder">
-        <div className='chat-detail__input-container fade-bottom'>
-          <textarea
-            className='chat-detail__textarea'
-            value={managerMessage}
-            onChange={(e) => setManagerMessage(e.target.value)}
-            placeholder='Write a message...'
-          />
-          <div className='chatinputbutton-container'>
-            <button
-              className='chat-detail__button_attachment'
-              onClick={handleSend}
-            >
-              <span className='button-chev'>
-                <AttachSvg className='icon-attachsvg' />{' '}
-              </span>
-            </button>
-            <button className='chat-detail__button' onClick={handleSend}>
-              <span className='button-chev'>
-                <SendSvg className='icon-sendsvg' />{' '}
-              </span>
-            </button>
+        <div className='message-holder'>
+          <div className='chat-detail__input-container fade-bottom'>
+            <textarea
+              className='chat-detail__textarea'
+              value={managerMessage}
+              onChange={(e) => setManagerMessage(e.target.value)}
+              placeholder='Write a message...'
+            />
+            <div className='chatinputbutton-container'>
+              <button
+                className='chat-detail__button_attachment'
+                onClick={handleSend}
+              >
+                <span className='button-chev'>
+                  <AttachSvg className='icon-attachsvg' />{' '}
+                </span>
+              </button>
+              <button className='chat-detail__button' onClick={handleSend}>
+                <span className='button-chev'>
+                  <SendSvg className='icon-sendsvg' />{' '}
+                </span>
+              </button>
+            </div>
           </div>
-        </div></div>
+        </div>
       )}
     </div>
   );
